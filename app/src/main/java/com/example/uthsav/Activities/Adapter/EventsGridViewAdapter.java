@@ -36,7 +36,7 @@ public class EventsGridViewAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return Long.parseLong(eventExpert.getEventOfPosition(position).getEventId());
+        return 0;
     }
 
     @Override
