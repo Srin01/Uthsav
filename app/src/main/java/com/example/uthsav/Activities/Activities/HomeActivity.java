@@ -2,6 +2,7 @@ package com.example.uthsav.Activities.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -51,7 +52,9 @@ public class HomeActivity extends AppCompatActivity {
 
     public void onClickShowNotifications(View view)
     {
-        Toast.makeText(this, "Important", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Important", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this,UserProfileActivity.class);
+        startActivity(intent);
     }
 
     ImageListener imageListener = new ImageListener() {
