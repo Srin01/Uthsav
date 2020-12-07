@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,20 +11,22 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#00BCD4"
+        android:background="#03A9F4"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button_signIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawablePadding="25dp"
+        android:drawablePadding="7dp"
         android:fontFamily="sans-serif-black"
+        android:drawableLeft="@drawable/googlesignin"
 
         android:padding="15dp"
         android:text="Sign in with Google"
         android:textAllCaps="false"
         android:textSize="24sp"
+        android:background="@drawable/rounded_corner_buttons"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
