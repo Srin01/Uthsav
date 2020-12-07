@@ -17,6 +17,7 @@ import com.synnapps.carouselview.ImageListener;
 
 public class HomeActivity extends AppCompatActivity {
 
+    public static final String EVENT_POS = "eventPosition";
     GridView eventsGridView;
     CarouselView carouselView;
 
@@ -37,6 +38,9 @@ public class HomeActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 //open Event Description activity using intents
                 Toast.makeText(HomeActivity.this, "You clicked on an event", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(HomeActivity.this, EventDescriptionActivity.class);
+                intent.putExtra(EVENT_POS,position);
+                startActivity(intent);
             }
         });
 
