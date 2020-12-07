@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "566860198164",
+    "project_id": "uthsav-125e5",
+    "storage_bucket": "uthsav-125e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566860198164:android:3e6d03808e5c0299dc9201",
+        "android_client_info": {
+          "package_name": "com.example.uthsav"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566860198164-jv9nb9aj6nujmpc9qjl87ojbgfqfbkdp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.uthsav",
+            "certificate_hash": "f4c273fec90353e8c29521c11cbcccefdbdcd9bb"
+          }
+        },
+        {
+          "client_id": "566860198164-3b7deeqlcpknnrk3g3jo1ml6h0nhil4p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_1WL7AFqA0Fga55u6FTR08WkIdjvnoxo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "566860198164-3b7deeqlcpknnrk3g3jo1ml6h0nhil4p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
