@@ -12,7 +12,7 @@
         <activity android:name=".Activities.Activities.EventDescriptionActivity"></activity>
         <activity android:name=".Activities.Activities.HomeActivity" />
         <activity android:name=".Activities.Activities.LoginActivity" />
-        <activity android:name=".Activities.SplashActivity">
+        <activity android:name=".Activities.Activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

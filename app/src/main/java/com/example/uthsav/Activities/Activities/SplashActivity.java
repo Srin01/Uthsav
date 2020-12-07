@@ -1,4 +1,4 @@
-package com.example.uthsav.Activities;
+package com.example.uthsav.Activities.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
