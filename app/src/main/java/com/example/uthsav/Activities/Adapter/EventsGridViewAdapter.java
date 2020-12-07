@@ -47,10 +47,10 @@ public class EventsGridViewAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.event_item, null);
         }
 
-        ImageView eventImage = view.findViewById(R.id.event_image);
-        TextView eventName = view.findViewById(R.id.event_name);
-        TextView eventOneLineDescription = view.findViewById(R.id.event_oneLine_description);
-        TextView eventprice = view.findViewById(R.id.event_price);
+        ImageView eventImage = view.findViewById(R.id.event_image_gridView);
+        TextView eventName = view.findViewById(R.id.event_name_gridView);
+        TextView eventOneLineDescription = view.findViewById(R.id.event_oneLine_description_gridView);
+        TextView eventprice = view.findViewById(R.id.event_price_gridView);
 
         eventImage.setImageResource(R.drawable.ic_launcher_background);
         //eventImage.setImageResource(get pic of event dynamically);
