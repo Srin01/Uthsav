@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".Activities.Activities.HomeActivity">
 
+    <GridView
+        android:id="@+id/events_gridView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:numColumns="2"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
