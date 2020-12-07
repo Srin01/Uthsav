@@ -8,31 +8,35 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.uthsav.Activities.Expert.EventExpert;
+import com.example.uthsav.Activities.Modal.Event;
 import com.example.uthsav.R;
 
 public class EventsGridViewAdapter extends BaseAdapter {
 
     private Context c;
     private LayoutInflater inflater;
+    EventExpert eventExpert;
 
     public EventsGridViewAdapter(Context c)
     {
         this.c = c;
+        eventExpert = EventExpert.getInstance();
     }
 
     @Override
     public int getCount() {
-        return 10;
+        return eventExpert.getTotalEvents();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return eventExpert.getEventOfPosition(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return Long.parseLong(eventExpert.getEventOfPosition(position).getEventId());
     }
 
     @Override
@@ -47,14 +51,19 @@ public class EventsGridViewAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.event_item, null);
         }
 
-        ImageView eventImage = view.findViewById(R.id.event_image_gridView);
-        TextView eventName = view.findViewById(R.id.event_name_gridView);
-        TextView eventOneLineDescription = view.findViewById(R.id.event_oneLine_description_gridView);
-        TextView eventprice = view.findViewById(R.id.event_price_gridView);
+        ImageView eventImage = view.findViewById(R.id.event_image);
+        TextView eventName = view.findViewById(R.id.event_name);
+        TextView eventOneLineDescription = view.findViewById(R.id.event_oneLine_description);
+        TextView eventPrice = view.findViewById(R.id.event_price);
+
+        Event event = eventExpert.getEventOfPosition(position);
 
         eventImage.setImageResource(R.drawable.ic_launcher_background);
         //eventImage.setImageResource(get pic of event dynamically);
         //get the text details dynamically
+        eventName.setText(event.getEventName());
+        eventOneLineDescription.setText(event.getEventDescription());
+        eventPrice.setText(event.getEventCost());
         return view;
     }
 }

@@ -16,7 +16,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/eventName_textView"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -31,7 +31,7 @@
         app:layout_constraintVertical_bias="0.098" />
 
     <ImageView
-        android:id="@+id/eventImage"
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="196dp"
 
@@ -40,13 +40,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventName_textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.098"
         tools:ignore="MissingConstraints" />
 
 
     <TextView
-        android:id="@+id/eventDescription"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -59,11 +59,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventImage"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.167" />
 
     <TextView
-        android:id="@+id/eventTime"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content"
@@ -76,12 +76,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventDescription"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.067" />
 
 
     <TextView
-        android:id="@+id/eventCost"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content"
@@ -91,13 +91,12 @@
         android:padding="5dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventTime"
-        app:layout_constraintVertical_bias="0.097"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.097" />
 
 
     <Button
-        android:id="@+id/Message_button"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -110,12 +109,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.154"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventCost"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.496" />
 
 
     <Button
-        android:id="@+id/buy_ticket_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -126,7 +124,7 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Message_button"
-        app:layout_constraintTop_toBottomOf="@+id/eventCost" />
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,31 +7,33 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.uthsav.Activities.Expert.EventExpert;
+import com.example.uthsav.Activities.Modal.Event;
 import com.example.uthsav.R;
 
-public class EventDescriptionActivity extends AppCompatActivity {
+import static com.example.uthsav.Activities.Activities.HomeActivity.EVENT_POS;
 
-    TextView eventName;
-    ImageView eventPhoto;
-    TextView eventDescription;
-    TextView eventTimings;
-    TextView eventCost;
+public class EventDescriptionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_description);
+        EventExpert eventExpert = EventExpert.getInstance();
+        ImageView eventImage  = findViewById(R.id.event_image);
+        TextView eventName = findViewById(R.id.event_name);
+        TextView eventOneLineDescription = findViewById(R.id.event_oneLine_description);
+        TextView eventPrice = findViewById(R.id.event_price);
+        TextView eventDate = findViewById(R.id.event_date_time);
 
-        bindViews();
-    }
+        int position = getIntent().getIntExtra(EVENT_POS,0);
+        Event event = eventExpert.getEventOfPosition(position);
 
-    private void bindViews()
-    {
-        eventName = findViewById(R.id.eventName_textView);
-        eventPhoto = findViewById(R.id.eventImage);
-        eventDescription = findViewById(R.id.eventDescription);
-        eventTimings = findViewById(R.id.eventTime);
-        eventCost = findViewById(R.id.eventCost);
+        eventImage.setImageResource(R.drawable.ic_launcher_background);
+        eventName.setText(event.getEventName());
+        eventOneLineDescription.setText(event.getEventDescription());
+        eventPrice.setText(event.getEventCost());
+        eventDate.setText(event.getEventTime());
     }
 
     public void onClickMessage(View view)
