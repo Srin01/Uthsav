@@ -7,15 +7,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.uthsav.Activities.Adapter.EventsGridViewAdapter;
 import com.example.uthsav.R;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 public class HomeActivity extends AppCompatActivity {
 
     public static final String EVENT_POS = "eventPosition";
     GridView eventsGridView;
+    CarouselView carouselView;
+
+    int[] sampleImages = {R.drawable.ic_launcher_background, R.drawable.ic_launcher_background, R.drawable.ic_launcher_background};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +43,26 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     private void bindViews()
     {
         eventsGridView = findViewById(R.id.events_gridView);
+        carouselView = findViewById(R.id.carouselView);
+        carouselView.setPageCount(3);
+        carouselView.setImageListener(imageListener);
     }
+
+    public void onClickShowNotifications(View view)
+    {
+        Toast.makeText(this, "Important", Toast.LENGTH_SHORT).show();
+    }
+
+    ImageListener imageListener = new ImageListener() {
+        @Override
+        public void setImageForPosition(int position, ImageView imageView) {
+            imageView.setImageResource(sampleImages[position]);
+        }
+    };
 }
