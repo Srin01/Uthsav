@@ -63,7 +63,7 @@
         app:layout_constraintVertical_bias="0.167" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/event_date_time"
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
 
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/event_price"
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content"
@@ -90,8 +90,9 @@
         android:textStyle="bold"
         android:padding="5dp"
 
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@id/event_date_time"
         app:layout_constraintVertical_bias="0.097" />
 
 
@@ -109,7 +110,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.154"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@id/event_price"
         app:layout_constraintVertical_bias="0.496" />
 
 
@@ -125,6 +126,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@id/event_price" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

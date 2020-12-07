@@ -2,6 +2,7 @@ package com.example.uthsav.Activities.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +14,7 @@ import com.example.uthsav.R;
 
 public class HomeActivity extends AppCompatActivity {
 
+    public static final String EVENT_POS = "eventPosition";
     GridView eventsGridView;
 
     @Override
@@ -30,6 +32,9 @@ public class HomeActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 //open Event Description activity using intents
                 Toast.makeText(HomeActivity.this, "You clicked on an event", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(HomeActivity.this, EventDescriptionActivity.class);
+                intent.putExtra(EVENT_POS,position);
+                startActivity(intent);
             }
         });
     }
