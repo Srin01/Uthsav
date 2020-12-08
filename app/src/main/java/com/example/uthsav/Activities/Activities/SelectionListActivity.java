@@ -20,7 +20,7 @@ public class SelectionListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_imp_notifications);
+        setContentView(R.layout.activity_selection_list);
 
         bindViews();
 
