@@ -1,6 +1,9 @@
 package com.example.uthsav.Activities.Activities;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,15 +24,18 @@ public class HomeActivity extends AppCompatActivity {
     public static final String EVENT_POS = "eventPosition";
     GridView eventsGridView;
     CarouselView carouselView;
+    DrawerLayout drawerLayout;
 
     int[] sampleImages = {R.drawable.ic_launcher_background, R.drawable.ic_launcher_background, R.drawable.ic_launcher_background};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.navigation_activity);
 
         bindViews();
+        setUpNavigationDrawerIcon();
+
 
         EventsGridViewAdapter adapter = new EventsGridViewAdapter(this);
         eventsGridView.setAdapter(adapter);
@@ -45,6 +51,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
     private void bindViews()
@@ -53,6 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         carouselView = findViewById(R.id.carouselView);
         carouselView.setPageCount(3);
         carouselView.setImageListener(imageListener);
+
     }
 
     public void onClickShowNotifications(View view)
@@ -68,4 +76,14 @@ public class HomeActivity extends AppCompatActivity {
             imageView.setImageResource(sampleImages[position]);
         }
     };
+
+
+    public void setUpNavigationDrawerIcon()
+    {
+        drawerLayout = findViewById(R.id.drawerLayout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.on_drawer_opened, R.string.on_drawer_closed);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+    }
+
 }
