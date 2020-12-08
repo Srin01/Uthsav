@@ -2,12 +2,9 @@ package com.example.uthsav.Activities.Drivers;
 
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-
 import com.example.uthsav.Activities.Modal.Event;
-import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -73,6 +70,12 @@ public class EventDriver
             }
         });
         return event[0].get();
+    }
+
+    public void addUserToSelectedList(String eventId, String uid)
+    {
+        firebaseFirestore.collection("events").document(eventId).update("selectedUsers", FieldValue.arrayUnion(uid));
+        Log.d(TAG, "addUserToSelectedList: added user " + uid + " selected users to event " + eventId);
     }
 
     public int getTotalNumberOfEvents()

@@ -1,5 +1,7 @@
 package com.example.uthsav.Activities.Modal;
 
+import java.util.List;
+
 public class Event
 {
     private String eventId;
@@ -8,6 +10,7 @@ public class Event
     private String eventDescription;
     private String eventTime;
     private String eventCost;
+    private List<String> selectedUsers;
 
     public Event() {
     }
@@ -66,5 +69,18 @@ public class Event
 
     public void setEventCost(String eventCost) {
         this.eventCost = eventCost;
+    }
+
+    public List<String> getSelectedUsers() {
+        return selectedUsers;
+    }
+
+    public void setSelectedUsers(List<String> selectedUsers) {
+        this.selectedUsers = selectedUsers;
+    }
+
+    public void addUserToEvents(String uid)
+    {
+        this.selectedUsers.add(uid);
     }
 }
