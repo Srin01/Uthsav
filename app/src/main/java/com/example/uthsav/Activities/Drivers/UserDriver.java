@@ -9,8 +9,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class UserDriver
 {
@@ -32,25 +30,28 @@ public class UserDriver
     public ArrayList<User> getAllUsersFromDB()
     {
         ArrayList<User> users = new ArrayList<>();
-        firebaseFirestore.collection("users").get().addOnCompleteListener(task -> {
-            if(task.isSuccessful())
-            {
-                for(QueryDocumentSnapshot documentSnapshot: Objects.requireNonNull(task.getResult())){
-                    users.add(documentSnapshot.toObject(User.class));
-                    Log.d(TAG, "getAllUsersFromDB: user with id "+ documentSnapshot.getId()+" added");
-                }
-            }
-            else
-            {
-                Log.d(TAG, "getAllUsersFromDB: "+ task.getException());
-            }
+        firebaseFirestore.collection("users")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d(TAG, "OnCompleteGetDataFromUsers " + document.getId() + " => " + document.getData());
+                            User user = document.toObject(User.class);
+                            users.add(user);
+                        }
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                }).addOnFailureListener(e -> {
+                    e.printStackTrace();
+            Log.d(TAG, "getAllUsersFromDB: " + e);
         });
         return users;
     }
 
     public User getUserOfId(String uid)
     {
-        final AtomicReference<User>[] user = new AtomicReference[]{new AtomicReference<>()};
+        final User[] user = new User[1];
         firebaseFirestore.collection("users").document(uid).get().addOnCompleteListener(task -> {
             if(task.isSuccessful())
             {
@@ -58,7 +59,7 @@ public class UserDriver
                 assert documentSnapshots != null;
                 if(documentSnapshots.exists())
                 {
-                    user[0].set((User) documentSnapshots.getData());
+                    user[0] = (User) documentSnapshots.getData();
                 }
             }
             else {
@@ -66,7 +67,7 @@ public class UserDriver
                 user[0] = null;
             }
         });
-        return user[0].get();
+        return user[0];
     }
 
     public void addEventsRegistered(String uid, String eventId)

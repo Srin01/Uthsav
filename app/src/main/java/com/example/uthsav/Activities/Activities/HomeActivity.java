@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.uthsav.Activities.Adapter.EventsGridViewAdapter;
+import com.example.uthsav.Activities.Expert.SelectedEventsExpert;
 import com.example.uthsav.R;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
@@ -57,7 +58,7 @@ public class HomeActivity extends AppCompatActivity {
     public void onClickShowNotifications(View view)
     {
 //        Toast.makeText(this, "Important", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this,UserProfileActivity.class);
+        Intent intent = new Intent(this, SelectionListActivity.class);
         startActivity(intent);
     }
 

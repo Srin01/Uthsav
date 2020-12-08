@@ -3,15 +3,11 @@ package com.example.uthsav.Activities.Drivers;
 import android.util.Log;
 
 import com.example.uthsav.Activities.Modal.Event;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class EventDriver
 {
@@ -53,24 +49,21 @@ public class EventDriver
         return events;
     }
 
-    public Event getEventOfId(String id)
-    {
-        final AtomicReference<Event>[] event = new AtomicReference[]{null};
-        firebaseFirestore.collection("events").whereEqualTo("eventId", id).get().addOnCompleteListener(task ->
+    public Event getEventOfId(String id)  {
+        final Event[] event = {null};
+        firebaseFirestore.collection("events").document(id).get().addOnSuccessListener(documentSnapshot ->
         {
-            if(task.isSuccessful()) {
-                QuerySnapshot document = task.getResult();
-                assert document != null;
-                if (!document.isEmpty()) {
-                    event[0].set((Event) document.toObjects(Event.class));
-                    Log.d(TAG, "DocumentSnapshot data: of ID " + event[0].get().getEventId() + " fetched from DB");
-                } else {
-                    Log.d(TAG, "No such document");
-                    event[0] = null;
-                }
+            if(documentSnapshot.exists())
+            {
+              event[0] = documentSnapshot.toObject(Event.class);
             }
         });
-        return event[0].get();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return event[0];
     }
 
     public void setRoundDone(String evenId)

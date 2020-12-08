@@ -3,19 +3,23 @@ package com.example.uthsav.Activities.Expert;
 import android.util.Log;
 
 import com.example.uthsav.Activities.Drivers.EventDriver;
+
 import java.util.List;
 
 public class SelectedUserExpert
 {
-    List<String > selectedUserList ;
+    List<String> selectedUserList ;
     String eventId;
+    EventExpert eventExpert;
     private static SelectedUserExpert single_instance = null;
     EventDriver eventDriver;
 
     private SelectedUserExpert(String eventId){
         eventDriver = new EventDriver();
         this.eventId = eventId;
-        selectedUserList = eventDriver.getEventOfId(eventId).getSelectedUsers();
+        eventExpert = EventExpert.getInstance();
+        selectedUserList = eventExpert.getEventOfIdFromCache(eventId).getSelectedUsers();
+        Log.d("myTag", "SelectedUserExpert: " + selectedUserList.get(0) + " " + selectedUserList.get(1));
     }
 
     public static SelectedUserExpert getInstance(String eventId)

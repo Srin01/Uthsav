@@ -9,12 +9,20 @@ import android.os.Looper;
 
 import com.example.uthsav.Activities.Activities.HomeActivity;
 import com.example.uthsav.Activities.Activities.LoginActivity;
+import com.example.uthsav.Activities.Expert.EventExpert;
+import com.example.uthsav.Activities.Expert.SelectedEventsExpert;
+import com.example.uthsav.Activities.Expert.SelectedUserExpert;
+import com.example.uthsav.Activities.Expert.UserExpert;
 import com.example.uthsav.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.auth.User;
 
 public class SplashActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
+    UserExpert userExpert;
+    EventExpert eventExpert;
+    SelectedEventsExpert selectedEventsExpert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,6 +30,9 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         firebaseAuth = FirebaseAuth.getInstance();
+        userExpert = UserExpert.getInstance();
+        eventExpert = EventExpert.getInstance();
+        selectedEventsExpert = SelectedEventsExpert.getInstance();
     }
 
     @Override

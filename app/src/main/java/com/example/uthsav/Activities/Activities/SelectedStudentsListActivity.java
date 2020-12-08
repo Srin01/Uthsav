@@ -11,9 +11,12 @@ import com.example.uthsav.Activities.Adapter.SelectedStudentListAdapter;
 import com.example.uthsav.Activities.Adapter.SelectionListAdapter;
 import com.example.uthsav.R;
 
+import static com.example.uthsav.Activities.Activities.SelectionListActivity.EVENT_ID;
+
 public class SelectedStudentsListActivity extends AppCompatActivity {
 
     private TextView eventName;
+    String eventId;
     private RecyclerView selectedStudentListRecyclerView;
     SelectedStudentListAdapter selectedStudentListAdapter;
 
@@ -25,12 +28,13 @@ public class SelectedStudentsListActivity extends AppCompatActivity {
         bindViews();
 
         selectedStudentListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        selectedStudentListAdapter = new SelectedStudentListAdapter(this);
+        selectedStudentListAdapter = new SelectedStudentListAdapter(this,eventId);
         selectedStudentListRecyclerView.setAdapter(selectedStudentListAdapter);
     }
 
     private void bindViews()
     {
+        eventId = getIntent().getStringExtra(EVENT_ID);
         eventName = findViewById(R.id.selectedStudentsList_eventName);
         selectedStudentListRecyclerView = findViewById(R.id.selectedStudentsList_recyclerView);
     }

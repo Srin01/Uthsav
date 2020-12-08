@@ -1,6 +1,7 @@
 package com.example.uthsav.Activities.Adapter;
 
 import android.content.Context;
+import android.media.MediaDrm;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +20,13 @@ public class SelectionListAdapter extends RecyclerView.Adapter<SelectionListAdap
 {
     private Context context;
     private SelectedEventsExpert selectedEventsExpert;
+    OnEventClickListener onEventListener;
 
-    public SelectionListAdapter(Context c)
+    public SelectionListAdapter(Context c,OnEventClickListener onEventListener)
     {
         context = c;
         selectedEventsExpert = SelectedEventsExpert.getInstance();
+        this.onEventListener = onEventListener;
     }
 
     @NonNull
@@ -32,7 +35,7 @@ public class SelectionListAdapter extends RecyclerView.Adapter<SelectionListAdap
     {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.selection_list_item, parent, false);
-        return new MyViewHolder(view);
+        return new MyViewHolder(view, onEventListener);
     }
 
     @Override
@@ -53,13 +56,26 @@ public class SelectionListAdapter extends RecyclerView.Adapter<SelectionListAdap
         return selectedEventsExpert.getTotalDoneEvents();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         View view;
-        public MyViewHolder(@NonNull View itemView)
+        OnEventClickListener onEventClickListener;
+        public MyViewHolder(@NonNull View itemView, OnEventClickListener onEventClickListener)
         {
             super(itemView);
             this.view = itemView;
+            this.onEventClickListener = onEventClickListener;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            onEventClickListener.onEventClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnEventClickListener
+    {
+        void onEventClick(int position);
     }
 }

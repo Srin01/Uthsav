@@ -32,6 +32,13 @@ public class UserExpert
         return single_instance;
     }
 
+    public void printUsers()
+    {
+        for (int i = 0; i <users.size() ; i++) {
+            Log.d("myTag", "printUsers: "+ users.get(i));
+        }
+    }
+
     public User getUserOfId(String uid)
     {
         for (int i = 0; i <users.size() ; i++) {
