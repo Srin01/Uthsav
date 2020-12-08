@@ -1,9 +1,6 @@
 package com.example.uthsav.Activities.Activities;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -14,8 +11,6 @@ import android.widget.TextView;
 
 import com.example.uthsav.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import org.w3c.dom.Text;
 
 public class UserProfileActivity extends AppCompatActivity
 {

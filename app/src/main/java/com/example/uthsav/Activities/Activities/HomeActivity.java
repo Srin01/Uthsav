@@ -2,19 +2,15 @@ package com.example.uthsav.Activities.Activities;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.uthsav.Activities.Adapter.EventsGridViewAdapter;
-import com.example.uthsav.Activities.Expert.SelectedEventsExpert;
 import com.example.uthsav.R;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
@@ -40,15 +36,12 @@ public class HomeActivity extends AppCompatActivity {
         EventsGridViewAdapter adapter = new EventsGridViewAdapter(this);
         eventsGridView.setAdapter(adapter);
 
-        eventsGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                //open Event Description activity using intents
-                Toast.makeText(HomeActivity.this, "You clicked on an event", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(HomeActivity.this, EventDescriptionActivity.class);
-                intent.putExtra(EVENT_POS,position);
-                startActivity(intent);
-            }
+        eventsGridView.setOnItemClickListener((adapterView, view, position, id) -> {
+            //open Event Description activity using intents
+            Toast.makeText(HomeActivity.this, "You clicked on an event", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(HomeActivity.this, EventDescriptionActivity.class);
+            intent.putExtra(EVENT_POS,position);
+            startActivity(intent);
         });
 
 
@@ -65,17 +58,11 @@ public class HomeActivity extends AppCompatActivity {
 
     public void onClickShowNotifications(View view)
     {
-//        Toast.makeText(this, "Important", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, SelectionListActivity.class);
         startActivity(intent);
     }
 
-    ImageListener imageListener = new ImageListener() {
-        @Override
-        public void setImageForPosition(int position, ImageView imageView) {
-            imageView.setImageResource(sampleImages[position]);
-        }
-    };
+    ImageListener imageListener = (position, imageView) -> imageView.setImageResource(sampleImages[position]);
 
 
     public void setUpNavigationDrawerIcon()
@@ -86,4 +73,9 @@ public class HomeActivity extends AppCompatActivity {
         toggle.syncState();
     }
 
+    public void onClickOpenUserProfile(View view)
+    {
+        Intent intent = new Intent(this, UserProfileActivity.class);
+        startActivity(intent);
+    }
 }

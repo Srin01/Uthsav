@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:background="#039be5">
+    android:background="#039be5"
+    android:onClick="onClickOpenUserProfile">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView"
