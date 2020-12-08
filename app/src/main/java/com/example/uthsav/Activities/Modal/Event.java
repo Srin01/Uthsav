@@ -11,16 +11,18 @@ public class Event
     private String eventTime;
     private String eventCost;
     private List<String> selectedUsers;
+    private Boolean isFirstRound;
 
     public Event() {
     }
 
-    public Event(String eventName, String eventImage, String eventDescription, String eventTime, String eventCost) {
+    public Event(String eventName, String eventImage, String eventDescription, String eventTime, String eventCost,Boolean isFirstRound) {
         this.eventName = eventName;
         this.eventImage = eventImage;
         this.eventDescription = eventDescription;
         this.eventTime = eventTime;
         this.eventCost = eventCost;
+        this.isFirstRound = isFirstRound;
     }
 
     public String getEventId() {
@@ -82,5 +84,13 @@ public class Event
     public void addUserToEvents(String uid)
     {
         this.selectedUsers.add(uid);
+    }
+
+    public Boolean getFirstRound() {
+        return isFirstRound;
+    }
+
+    public void setFirstRound(Boolean firstRound) {
+        isFirstRound = firstRound;
     }
 }

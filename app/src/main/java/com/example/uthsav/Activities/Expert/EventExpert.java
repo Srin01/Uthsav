@@ -27,6 +27,16 @@ public class EventExpert
         return single_instance;
     }
 
+    public Event getEventOfIdFromCache(String eventId)
+    {
+        for (int i = 0; i <getTotalEvents() ; i++) {
+            if(events.get(i).getEventId().equals(eventId)) {
+                return events.get(i);
+            }
+        }
+        return null;
+    }
+
     public Event getEventOfPosition(int position)
     {
         return events.get(position);
@@ -41,6 +51,12 @@ public class EventExpert
     public int getTotalEvents()
     {
         return events.size();
+    }
+
+    public void setRoundDone(String eventId)
+    {
+        eventDriver.setRoundDone(eventId);
+        getEventOfIdFromCache(eventId).setFirstRound(true);
     }
 
     public Event getEventOfId(String id)

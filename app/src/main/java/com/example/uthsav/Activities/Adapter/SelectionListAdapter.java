@@ -10,15 +10,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.uthsav.Activities.Expert.SelectedEventsExpert;
+import com.example.uthsav.Activities.Expert.SelectedUserExpert;
+import com.example.uthsav.Activities.Modal.Event;
 import com.example.uthsav.R;
 
 public class SelectionListAdapter extends RecyclerView.Adapter<SelectionListAdapter.MyViewHolder>
 {
     private Context context;
+    private SelectedEventsExpert selectedEventsExpert;
 
     public SelectionListAdapter(Context c)
     {
         context = c;
+        selectedEventsExpert = SelectedEventsExpert.getInstance();
     }
 
     @NonNull
@@ -27,8 +32,7 @@ public class SelectionListAdapter extends RecyclerView.Adapter<SelectionListAdap
     {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.selection_list_item, parent, false);
-        MyViewHolder myViewHolder = new MyViewHolder(view);
-        return myViewHolder;
+        return new MyViewHolder(view);
     }
 
     @Override
@@ -39,11 +43,14 @@ public class SelectionListAdapter extends RecyclerView.Adapter<SelectionListAdap
         TextView eventName = v.findViewById(R.id.selectionList_eventName);
 
         //here the data from expert is required
+        Event event = selectedEventsExpert.getEventOfPosition(position);
+        eventImage.setImageResource(R.drawable.ic_launcher_background);
+        eventName.setText(event.getEventName());
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return selectedEventsExpert.getTotalDoneEvents();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder
@@ -54,6 +61,5 @@ public class SelectionListAdapter extends RecyclerView.Adapter<SelectionListAdap
             super(itemView);
             this.view = itemView;
         }
-
     }
 }

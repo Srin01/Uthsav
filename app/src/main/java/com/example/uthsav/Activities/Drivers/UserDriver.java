@@ -6,7 +6,10 @@ import com.example.uthsav.Activities.Modal.User;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class UserDriver
@@ -24,6 +27,25 @@ public class UserDriver
         firebaseFirestore.collection("users").document(uid).set(user).addOnSuccessListener(documentReference -> {
             Log.d(TAG, "addUserToDB: added user of id " + uid + " to fireBase");
         });
+    }
+
+    public ArrayList<User> getAllUsersFromDB()
+    {
+        ArrayList<User> users = new ArrayList<>();
+        firebaseFirestore.collection("users").get().addOnCompleteListener(task -> {
+            if(task.isSuccessful())
+            {
+                for(QueryDocumentSnapshot documentSnapshot: Objects.requireNonNull(task.getResult())){
+                    users.add(documentSnapshot.toObject(User.class));
+                    Log.d(TAG, "getAllUsersFromDB: user with id "+ documentSnapshot.getId()+" added");
+                }
+            }
+            else
+            {
+                Log.d(TAG, "getAllUsersFromDB: "+ task.getException());
+            }
+        });
+        return users;
     }
 
     public User getUserOfId(String uid)

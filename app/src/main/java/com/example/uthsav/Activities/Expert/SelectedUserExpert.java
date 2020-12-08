@@ -3,10 +3,6 @@ package com.example.uthsav.Activities.Expert;
 import android.util.Log;
 
 import com.example.uthsav.Activities.Drivers.EventDriver;
-import com.example.uthsav.Activities.Modal.Event;
-import com.example.uthsav.Activities.Modal.User;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class SelectedUserExpert
