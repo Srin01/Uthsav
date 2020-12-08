@@ -56,7 +56,5 @@ public class EditUserProfileActivity extends AppCompatActivity
         emailId_editText = findViewById(R.id.emailId_editText);
         registerNumber_editText = findViewById(R.id.registerNumber);
 
-
-
     }
 }

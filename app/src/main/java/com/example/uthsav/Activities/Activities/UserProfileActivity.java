@@ -1,6 +1,9 @@
 package com.example.uthsav.Activities.Activities;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -29,6 +32,7 @@ public class UserProfileActivity extends AppCompatActivity
     RecyclerView recyclerView;
     FloatingActionButton floatingActionButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -36,6 +40,7 @@ public class UserProfileActivity extends AppCompatActivity
         setContentView(R.layout.userprofileactivity);
 
         bindViews();
+
     }
 
     private  void bindViews()
@@ -56,7 +61,11 @@ public class UserProfileActivity extends AppCompatActivity
 
     public void onClickEditUserProfile(View view)
     {
-        Intent intent = new Intent(this,EditUserProfileActivity.class);
+        Intent intent= new Intent(this,EditUserProfileActivity.class);
         startActivity(intent);
     }
+
+
+
+
 }

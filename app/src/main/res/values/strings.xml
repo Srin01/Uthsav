@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Uthsav</string>
+    <string name="on_drawer_opened">Navigation drawer was opened</string>
+    <string name="on_drawer_closed">Navigation drawer was closed</string>
 </resources>
