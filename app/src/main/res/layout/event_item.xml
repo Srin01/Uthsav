@@ -8,14 +8,14 @@
     android:gravity="center">
 
     <ImageView
-        android:id="@+id/event_image"
+        android:id="@+id/event_image_gridView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/ic_launcher_background"
         />
 
     <TextView
-        android:id="@+id/event_name"
+        android:id="@+id/event_name_gridView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="EVENT NAME"
@@ -25,7 +25,7 @@
         />
 
     <TextView
-        android:id="@+id/event_oneLine_description"
+        android:id="@+id/event_oneLine_description_gridView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="One line description"
@@ -33,7 +33,7 @@
         />
 
     <TextView
-        android:id="@+id/event_price"
+        android:id="@+id/event_price_gridView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Event price"
