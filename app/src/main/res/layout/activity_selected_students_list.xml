@@ -10,7 +10,7 @@
         android:id="@+id/selectedStudentsList_eventName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Event Name"
+        android:text="Event Name :"
         android:textStyle="bold"
         android:textSize="25sp"
         android:layout_marginTop="10dp"
@@ -19,8 +19,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/selectedStudentsList_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent" />
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectedStudentsList_eventName"
+        android:layout_marginTop="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
