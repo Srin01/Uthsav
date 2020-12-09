@@ -1,17 +1,20 @@
 package com.example.uthsav.Activities.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.uthsav.Activities.Adapter.EventsGridViewAdapter;
 import com.example.uthsav.R;
+import com.google.android.material.navigation.NavigationView;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -31,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
 
         bindViews();
         setUpNavigationDrawerIcon();
+        setUpListeners();
 
 
         EventsGridViewAdapter adapter = new EventsGridViewAdapter(this);
@@ -77,5 +81,30 @@ public class HomeActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(this, UserProfileActivity.class);
         startActivity(intent);
+    }
+
+    public void setUpListeners()
+    {
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.item1:
+                       startActivity(new Intent(HomeActivity.this,EventListActivity.class));
+                        break;
+                    case R.id.item2:
+                        Toast.makeText(HomeActivity.this, "You clicked Map", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.item3:
+                        Toast.makeText(HomeActivity.this, "You clicked help", Toast.LENGTH_SHORT).show();
+                        break;
+
+                }
+                return true;
+
+            }
+        });
+
     }
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.Activities.EventList">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#03A9F4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="5dp"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark"
+        />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:background="#03A9F4"
+        android:elevation="6dp"
+        app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:tabSelectedTextColor="#000000"
+        app:tabTextColor="#000809"
+        app:tabIconTint="#03A9F4"
+        app:tabBackground="@drawable/tab_selector"
+
+        tools:ignore="MissingConstraints" />
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/tab_layout"
+        android:background="#ffffff"
+        tools:ignore="MissingConstraints"
+         />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_alignParentRight="true"
+
+
+        app:layout_constraintEnd_toEndOf="@+id/tab_layout"
+        tools:ignore="MissingConstraints" />
+
+</RelativeLayout>
