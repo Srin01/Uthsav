@@ -19,16 +19,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Activities.Activities.SearchEventActivity"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/maps_api_key" />
-        <activity android:name=".Activities.Activities.MapActivity"></activity>
+
+        <activity android:name=".Activities.Activities.MapActivity" />
         <activity android:name=".Activities.Activities.EventListActivity" />
+        <activity android:name=".Activities.Activities.SuccessfulRegistrationActivity" />
         <activity android:name=".Activities.Activities.UserProfileActivity" />
         <activity android:name=".Activities.Activities.SelectionListActivity" />
         <activity android:name=".Activities.Activities.SelectedStudentsListActivity" />
@@ -38,7 +40,6 @@
         <activity android:name=".Activities.Activities.HomeActivity" />
         <activity android:name=".Activities.Activities.LoginActivity" />
         <activity android:name=".Activities.Activities.EditUserProfileActivity" />
-        <activity android:name=".Activities.Activities.EventListActivity" />
         <activity android:name=".Activities.Activities.SplashActivity">
 
             <intent-filter>
