@@ -94,7 +94,7 @@ public class HomeActivity extends AppCompatActivity {
                        startActivity(new Intent(HomeActivity.this,EventListActivity.class));
                         break;
                     case R.id.item2:
-                        Toast.makeText(HomeActivity.this, "You clicked Map", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(HomeActivity.this,MapActivity.class));
                         break;
                     case R.id.item3:
                         Toast.makeText(HomeActivity.this, "You clicked help", Toast.LENGTH_SHORT).show();
@@ -102,7 +102,6 @@ public class HomeActivity extends AppCompatActivity {
 
                 }
                 return true;
-
             }
         });
 
