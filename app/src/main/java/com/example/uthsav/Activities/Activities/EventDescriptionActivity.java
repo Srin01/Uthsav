@@ -2,6 +2,7 @@ package com.example.uthsav.Activities.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -49,10 +50,11 @@ public class EventDescriptionActivity extends AppCompatActivity
 
     public void onClickMessage(View view)
     {
+        startActivity(new Intent(this, MessageActivity.class));
     }
 
     public void onClickBuyTicket(View view)
     {
-
+        startActivity(new Intent(this, SuccessfulRegistrationActivity.class));
     }
 }
