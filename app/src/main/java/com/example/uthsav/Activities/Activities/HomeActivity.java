@@ -11,6 +11,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
@@ -21,6 +22,7 @@ import com.example.uthsav.Activities.Adapter.EventsGridViewAdapter;
 import com.example.uthsav.Activities.Expert.UserExpert;
 import com.example.uthsav.Activities.Modal.User;
 import com.example.uthsav.R;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.synnapps.carouselview.CarouselView;
@@ -50,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
 
         bindViews();
         setUpNavigationDrawerIcon();
+        setUpListeners();
         checkPermission(
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 STORAGE_PERMISSION_CODE);
@@ -60,7 +63,7 @@ public class HomeActivity extends AppCompatActivity {
 
         eventsGridView.setOnItemClickListener((adapterView, view, position, id) -> {
             //open Event Description activity using intents
-            Toast.makeText(HomeActivity.this, "You clicked on an event", Toast.LENGTH_SHORT).show();
+
             Intent intent = new Intent(HomeActivity.this, EventDescriptionActivity.class);
             intent.putExtra(EVENT_POS,position);
             startActivity(intent);
@@ -161,5 +164,29 @@ public class HomeActivity extends AppCompatActivity {
                         .show();
             }
         }
+    }
+
+    public void setUpListeners()
+    {
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.item1:
+                       startActivity(new Intent(HomeActivity.this,EventListActivity.class));
+                        break;
+                    case R.id.item2:
+                        startActivity(new Intent(HomeActivity.this,MapActivity.class));
+                        break;
+                    case R.id.item3:
+                        Toast.makeText(HomeActivity.this, "You clicked help", Toast.LENGTH_SHORT).show();
+                        break;
+
+                }
+                return true;
+            }
+        });
+
     }
 }
