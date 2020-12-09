@@ -19,5 +19,11 @@
             android:title="Help"
             android:icon="@drawable/help_icon"
             />
+
+        <item
+            android:id="@+id/logOutItem"
+            android:title="Log out"
+            android:icon="@drawable/ic_launcher_foreground"
+            />
     </group>
 </menu>

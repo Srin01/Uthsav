@@ -115,16 +115,15 @@ public class LoginActivity extends AppCompatActivity{
 
     private void updateUI(FirebaseUser fUser)
     {
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-
-        if(account != null)
+        if(fUser != null)
         {
-            String personName = account.getDisplayName();
-            String personEmail = account.getEmail();
+            String personName = fUser.getDisplayName();
+            String personEmail = fUser.getEmail();
             Log.d(TAG, "updateUI: user id created to db " + fUser.getUid());
             userExpert.addUserToDB(fUser.getUid(), new User(fUser.getUid(),personEmail,personName,"gjsgjaghd","789787971" ,"ECVU","19GACSE060",null));
 
             startActivity(new Intent(this, HomeActivity.class));
+            finish();
         }
     }
 }
