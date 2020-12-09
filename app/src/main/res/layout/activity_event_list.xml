@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Activities.EventList">
+    tools:context=".Activities.Activities.EventListActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -33,7 +33,6 @@
 
         tools:ignore="MissingConstraints" />
 
-
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
@@ -42,16 +41,5 @@
         android:background="#ffffff"
         tools:ignore="MissingConstraints"
          />
-
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:layout_alignParentRight="true"
-
-
-        app:layout_constraintEnd_toEndOf="@+id/tab_layout"
-        tools:ignore="MissingConstraints" />
 
 </RelativeLayout>

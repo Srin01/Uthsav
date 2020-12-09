@@ -22,7 +22,6 @@ public class EventListActivity extends AppCompatActivity
 
 //        SearchView searchView = findViewById(R.id.searchView);
 
-
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("UnRegistered Events"));
         tabLayout.addTab(tabLayout.newTab().setText("Registered Events"));
