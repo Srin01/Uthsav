@@ -16,6 +16,7 @@ public class UserExpert
     private UserExpert() throws InterruptedException {
         userDriver = new UserDriver();
         users = userDriver.getAllUsersFromDB();
+        Thread.sleep(3000);
     }
 
     public User getUserOfPosition(int position)

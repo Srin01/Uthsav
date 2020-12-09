@@ -29,6 +29,11 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key" />
+
+        <activity android:name=".Activities.Activities.MapActivity" />
+        <activity android:name=".Activities.Activities.EventListActivity" />
+        <activity android:name=".Activities.Activities.SuccessfulRegistrationActivity" />
             android:value="@string/maps_api_key" />
         <activity android:name=".Activities.Activities.MapActivity"></activity>
         <activity android:name=".Activities.Activities.SuccessfulRegistrationActivity"/>
