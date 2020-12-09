@@ -44,33 +44,6 @@ public class SuccessfulRegistrationActivity extends AppCompatActivity {
         continueButton.setAnimation(bottomAnim);
     }
 
-    private void confettiDisplay()
-    {
-//        final List<Bitmap> allPossibleConfetti = Utils.generateConfettiBitmaps(new int[] { Color.BLACK }, 20 /* size */);
-//
-//        final int numConfetti = allPossibleConfetti.size();
-//        final ConfettoGenerator confettoGenerator = new ConfettoGenerator() {
-//            @Override
-//            public Confetto generateConfetto(Random random) {
-//                final Bitmap bitmap = allPossibleConfetti.get(random.nextInt(numConfetti));
-//                return new BitmapConfetto(bitmap);
-//            }
-//        };
-//
-//        ViewGroup container = constraintLayout;
-//
-//        final int containerMiddleX = container.getWidth();
-//        final int containerMiddleY = container.getHeight();
-//        final ConfettiSource confettiSource = new ConfettiSource(containerMiddleX, containerMiddleY);
-//
-//        new ConfettiManager(this, confettoGenerator, confettiSource, container)
-//                .setEmissionDuration(1000)
-//                .setEmissionRate(100)
-//                .setVelocityX(20, 10)
-//                .setVelocityY(100)
-//                .setRotationalVelocity(180, 180)
-//                .animate();
-    }
 
     private void bindViews()
     {
@@ -85,7 +58,6 @@ public class SuccessfulRegistrationActivity extends AppCompatActivity {
 
     public void onClickBomb(View view)
     {
-        confettiDisplay();
         CommonConfetti.rainingConfetti(constraintLayout,
                 new int[]{Color.parseColor("#f45c2c"), Color.parseColor("#ecca72"), Color.parseColor("#048181"), Color.parseColor("#5a9c7d"), Color.parseColor("#9fbeb2"), Color.parseColor("#366854")})
                 .infinite();

@@ -10,6 +10,8 @@ public class Event
     private String eventDescription;
     private String eventTime;
     private String eventCost;
+    private String organiserId;
+
     private List<String> selectedUsers;
     private Boolean isFirstRound;
 
@@ -92,5 +94,13 @@ public class Event
 
     public void setFirstRound(Boolean firstRound) {
         isFirstRound = firstRound;
+    }
+
+    public String getOrganiserId() {
+        return organiserId;
+    }
+
+    public void setOrganiserId(String organiserId) {
+        this.organiserId = organiserId;
     }
 }

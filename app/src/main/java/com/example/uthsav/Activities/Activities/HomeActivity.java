@@ -11,6 +11,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.util.Log;
 import android.view.View;
@@ -110,6 +111,12 @@ public class HomeActivity extends AppCompatActivity {
         userName.setText(user.getUserName());
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main_activity,menu);
+        return true;
+    }
+
     public void checkPermission(String permission, int requestCode)
     {
 
@@ -173,17 +180,21 @@ public class HomeActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.item1:
-                   startActivity(new Intent(HomeActivity.this,EventListActivity.class));
+                    startActivity(new Intent(HomeActivity.this, EventListActivity.class));
                     break;
                 case R.id.item2:
-                    startActivity(new Intent(HomeActivity.this,MapActivity.class));
+                    startActivity(new Intent(HomeActivity.this, MapActivity.class));
                     break;
                 case R.id.item3:
                     Toast.makeText(HomeActivity.this, "You clicked help", Toast.LENGTH_SHORT).show();
                     break;
-
+                case R.id.logOutItem:
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(this, SplashActivity.class));
+                    finish();
+                    break;
             }
-            return true;
+            return false;
         });
 
     }

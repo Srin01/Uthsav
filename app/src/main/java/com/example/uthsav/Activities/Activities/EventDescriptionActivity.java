@@ -30,6 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import static com.example.uthsav.Activities.Activities.HomeActivity.EVENT_POS;
+import static com.example.uthsav.Activities.Activities.MessageActivity.ORGANISER_ID;
 
 public class EventDescriptionActivity extends AppCompatActivity
 {
@@ -77,7 +78,9 @@ public class EventDescriptionActivity extends AppCompatActivity
 
     public void onClickMessage(View view)
     {
-        startActivity(new Intent(this, MessageActivity.class));
+        Intent intent = new Intent(this, MessageActivity.class);
+        intent.putExtra(ORGANISER_ID,event.getOrganiserId());
+        startActivity(intent);
     }
 
     public void onClickBuyTicket(View view)
