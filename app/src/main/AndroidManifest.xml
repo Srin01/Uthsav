@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.Activities.EventListActivity" />
+        <activity android:name=".Activities.Activities.SuccessfulRegistrationActivity"></activity>
         <activity android:name=".Activities.Activities.UserProfileActivity" />
         <activity android:name=".Activities.Activities.SelectionListActivity" />
         <activity android:name=".Activities.Activities.SelectedStudentsListActivity" />

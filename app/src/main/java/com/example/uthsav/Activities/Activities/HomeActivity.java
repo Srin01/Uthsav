@@ -42,7 +42,7 @@ public class HomeActivity extends AppCompatActivity {
 
         eventsGridView.setOnItemClickListener((adapterView, view, position, id) -> {
             //open Event Description activity using intents
-            Toast.makeText(HomeActivity.this, "You clicked on an event", Toast.LENGTH_SHORT).show();
+
             Intent intent = new Intent(HomeActivity.this, EventDescriptionActivity.class);
             intent.putExtra(EVENT_POS,position);
             startActivity(intent);
