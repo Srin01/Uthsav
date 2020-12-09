@@ -46,6 +46,11 @@ public class EventDriver
                 Log.d(TAG, "getAllEventsFromDB: "+ task.getException());
             }
         });
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return events;
     }
 

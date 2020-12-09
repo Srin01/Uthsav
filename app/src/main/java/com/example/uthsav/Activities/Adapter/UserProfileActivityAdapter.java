@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.uthsav.Activities.Drivers.UserDriver;
 import com.example.uthsav.Activities.Expert.EventExpert;
 import com.example.uthsav.Activities.Expert.UserExpert;
 import com.example.uthsav.Activities.Modal.Event;
@@ -23,14 +24,18 @@ public class UserProfileActivityAdapter extends RecyclerView.Adapter<UserProfile
     private Context context;
     OnEventClickListener onEventListener;
     ArrayList<String> eventIDs;
-    ArrayList<String> events;
     UserExpert userExpert;
     EventExpert eventExpert;
+    UserDriver userDriver;
+    String userId;
 
-    public UserProfileActivityAdapter(Context c) {
+    public UserProfileActivityAdapter(Context c, String userId) {
         context = c;
         userExpert = UserExpert.getInstance();
+        userDriver = new UserDriver();
         eventExpert = EventExpert.getInstance();
+        this.userId = userId;
+        eventIDs = userExpert.getUserOfIdFromCache(userId).getUserParticipatedEvents();
     }
 
     @NonNull
@@ -47,16 +52,13 @@ public class UserProfileActivityAdapter extends RecyclerView.Adapter<UserProfile
         ImageView eventImage = v.findViewById(R.id.selectionList_eventImage);
         TextView eventName = v.findViewById(R.id.selectionList_eventName);
 
-        //here the data from expert is required
-
-        eventIDs = userExpert.getUserOfId(FirebaseAuth.getInstance().getCurrentUser().getUid()).getUserParticipatedEvents();
-        eventName.setText(eventExpert.getEventOfId(eventIDs.get(position)).getEventName());
+        eventName.setText(eventExpert.getEventOfIdFromCache(eventIDs.get(position)).getEventName());
         eventImage.setImageResource(R.drawable.ic_launcher_background);
     }
 
     @Override
     public int getItemCount() {
-        return userExpert.getUserOfId(FirebaseAuth.getInstance().getCurrentUser().getUid()).getUserParticipatedEvents().size();
+        return 0;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener

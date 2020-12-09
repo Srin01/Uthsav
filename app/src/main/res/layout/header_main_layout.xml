@@ -9,7 +9,7 @@
     android:onClick="onClickOpenUserProfile">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageView"
+        android:id="@+id/circleImageViewProfile"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:scaleType="centerCrop"
@@ -22,6 +22,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
+        android:id="@+id/text_View_profile_name"
         android:layout_width="116dp"
         android:layout_height="30dp"
         android:text="Name"

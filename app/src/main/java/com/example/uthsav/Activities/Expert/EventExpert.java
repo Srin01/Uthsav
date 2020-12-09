@@ -58,9 +58,4 @@ public class EventExpert
         eventDriver.setRoundDone(eventId);
         getEventOfIdFromCache(eventId).setFirstRound(true);
     }
-
-    public Event getEventOfId(String id)
-    {
-        return eventDriver.getEventOfId(id);
-    }
 }

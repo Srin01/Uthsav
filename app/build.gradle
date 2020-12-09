@@ -16,6 +16,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    googleServices { disableVersionCheck = true }
     buildTypes {
         release {
             minifyEnabled false
@@ -30,10 +31,16 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'com.google.android.gms:play-services-vision:20.1.2'
+    implementation 'com.google.firebase:firebase-ml-vision:24.1.0'
+    implementation 'com.google.firebase:firebase-ml-vision-barcode-model:16.1.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'com.google.firebase:firebase-firestore:22.0.0'
+    implementation 'com.google.firebase:firebase-ml-vision:24.1.0'
+    implementation 'com.google.firebase:firebase-storage:19.2.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -51,6 +58,8 @@ dependencies {
     implementation 'com.synnapps:carouselview:0.1.5' //carousel view
     implementation 'de.hdodenhof:circleimageview:3.1.0' //circular imageview
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.karumi:dexter:6.2.2'//for easy permission
     implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
-
+    implementation 'com.otaliastudios:cameraview:2.6.4'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

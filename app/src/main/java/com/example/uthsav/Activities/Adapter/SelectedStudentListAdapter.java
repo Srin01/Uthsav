@@ -55,7 +55,7 @@ public class SelectedStudentListAdapter extends RecyclerView.Adapter<SelectedStu
         String userId = selectedUserExpert.getUserOfPosition(position);
         Log.d("myTag", "onBindViewHolder: user object created of id "+ userId);
         userExpert.printUsers();
-        User user = userExpert.getUserOfId(userId);
+        User user = userExpert.getUserOfIdFromCache(userId);
         Log.d("myTag", "onBindViewHolder: user object created "+ user);
         studentName.setText(user.getUserName());
         studentEmailId.setText(user.getUserMail());

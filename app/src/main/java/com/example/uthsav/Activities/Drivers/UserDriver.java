@@ -9,6 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class UserDriver
 {
@@ -22,13 +23,10 @@ public class UserDriver
 
     public void addUserToDB(String uid, User user)
     {
-        firebaseFirestore.collection("users").document(uid).set(user).addOnSuccessListener(documentReference -> {
-            Log.d(TAG, "addUserToDB: added user of id " + uid + " to fireBase");
-        });
+        firebaseFirestore.collection("users").document(uid).set(user).addOnSuccessListener(documentReference -> Log.d(TAG, "addUserToDB: added user of id " + uid + " to fireBase"));
     }
 
-    public ArrayList<User> getAllUsersFromDB()
-    {
+    public ArrayList<User> getAllUsersFromDB() throws InterruptedException {
         ArrayList<User> users = new ArrayList<>();
         firebaseFirestore.collection("users")
                 .get()
@@ -46,6 +44,7 @@ public class UserDriver
                     e.printStackTrace();
             Log.d(TAG, "getAllUsersFromDB: " + e);
         });
+        Thread.sleep(3000);
         return users;
     }
 
@@ -67,6 +66,11 @@ public class UserDriver
                 user[0] = null;
             }
         });
+        try {
+        Thread.sleep(2000);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
         return user[0];
     }
 
