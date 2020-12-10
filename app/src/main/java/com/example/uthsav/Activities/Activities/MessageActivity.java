@@ -69,6 +69,8 @@ public class MessageActivity extends AppCompatActivity {
     DatabaseReference firebaseDatabase;
     DatabaseReference reference;
 
+    boolean notify = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,6 +117,7 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
         imageButtonSend.setOnClickListener(view -> {
+            notify = true;
             String message = editText_Message.getText().toString();
             if (!message.equals(""))
             {
@@ -165,6 +168,51 @@ public class MessageActivity extends AppCompatActivity {
 
         databaseReference.child("chats").push().setValue(hashMap);
 
+        final String msg = message;
+        if(notify){
+        sendNotification(receiver,firebaseUser.getDisplayName(),msg);
+        }
+        notify = false;
+
+    }
+
+    private void sendNotification(String receiver, String userName, String message)
+    {
+        DatabaseReference token =FirebaseDatabase.getInstance().getReference("Tokens");
+        Query query = token.orderByKey().equalTo(receiver);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
+                    Token token1 = snapshot.getValue(Token.class);
+                    Data data = new Data(firebaseUser.getUid(),R.mipmap.ic_launcher,userName+": "+message,"New Message",organiserId);
+                    Sender sender = new Sender(data, token1.getToken());
+                    apiService.sendNotification(sender)
+                            .enqueue(new Callback<MyResponse>() {
+                                @Override
+                                public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                                    if(response.code() == 200)
+                                    {
+                                        if(response.body().success != 1) {
+                                            Toast.makeText(MessageActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<MyResponse> call, Throwable t) {
+
+                                }
+                            });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 

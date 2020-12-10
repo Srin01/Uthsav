@@ -6,6 +6,7 @@ public class Data
     private int icon;
     private String body;
     private String title;
+    private String organiserId;
 
     public Data() {
     }
@@ -15,6 +16,14 @@ public class Data
         this.icon = icon;
         this.body = body;
         this.title = title;
+    }
+
+    public Data(String userId, int icon, String body, String title, String organiserId) {
+        this.userId = userId;
+        this.icon = icon;
+        this.body = body;
+        this.title = title;
+        this.organiserId = organiserId;
     }
 
     public String getUserId() {
