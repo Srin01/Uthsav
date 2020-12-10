@@ -212,13 +212,15 @@ public class MessageActivity extends AppCompatActivity {
 
 
         final String msg = message;
+
         reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
+                String userName = (String) dataSnapshot.child("username").getValue();
+//                Log.d("myTag", "onDataChange: "+ dataSnapshot.child("username"));
                 if (notify) {
-                    sendNotification(receiver, user.getUserName(), msg);
+                    sendNotification(receiver,userName, msg);
                 }
                 notify = false;
             }
