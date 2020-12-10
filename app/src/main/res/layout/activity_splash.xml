@@ -4,20 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/utsav_logo_bg"
     >
 
-    <TextView
+    <ImageView
         android:id="@+id/LogoHolder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/utsav_text"
 
-        android:text="LOGO Place Holder"
         android:textSize="30sp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/slogan"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:src="@drawable/dare_to_dream"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintVertical_bias="0.9"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

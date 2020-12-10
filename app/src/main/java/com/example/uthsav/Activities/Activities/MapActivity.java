@@ -123,9 +123,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
                 .title("ECVU OAT"));
 
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ecvuLectureComplex, 18), 5000, null);
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ecvuMinchu,18), 5000, null);
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ecvuNandiniParlour,18), 5000, null);
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ecvuOAT,18), 5000, null);
 
         getMyLocation();
     }
@@ -155,25 +152,18 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
             @Override
             public void onMapClick(LatLng latLng)
             {
-                LatLng ecvuLectureComplex = new LatLng(12.974402,77.585887);
-                LatLng ecvuMinchu = new LatLng(12.974993,77.586381);
-                LatLng ecvuNandiniParlour = new LatLng(12.974570,77.585662);
-                LatLng ecvuOAT = new LatLng(12.974172,77.586027);
+//                LatLng ecvuLectureComplex = new LatLng(12.974402,77.585887);
+//                LatLng ecvuMinchu = new LatLng(12.974993,77.586381);
+//                LatLng ecvuNandiniParlour = new LatLng(12.974570,77.585662);
+//                LatLng ecvuOAT = new LatLng(12.974172,77.586027);
 
-                if(latLng.equals(ecvuLectureComplex) || latLng.equals(ecvuMinchu) || latLng.equals(ecvuNandiniParlour) || latLng.equals(ecvuOAT))
-                {
-                    end = latLng;
+                end = latLng;
 
-                    mMap.clear();
+                mMap.clear();
 
-                    start = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
-                    //start route finding
-                    Findroutes(start, end);
-                }
-                else
-                {
-                    Toast.makeText(MapActivity.this, "Select one of the four locations in ECVU", Toast.LENGTH_SHORT).show();
-                }
+                start = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
+                //start route finding
+                Findroutes(start, end);
             }
         });
     }

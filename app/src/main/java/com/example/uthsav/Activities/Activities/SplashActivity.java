@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import com.example.uthsav.Activities.Activities.HomeActivity;
 import com.example.uthsav.Activities.Activities.LoginActivity;
@@ -23,6 +26,8 @@ public class SplashActivity extends AppCompatActivity {
     UserExpert userExpert;
     EventExpert eventExpert;
     SelectedEventsExpert selectedEventsExpert;
+    Animation topAnim, bottomAnim;
+    ImageView utsav, dareToDream;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,6 +38,19 @@ public class SplashActivity extends AppCompatActivity {
         userExpert = UserExpert.getInstance();
         eventExpert = EventExpert.getInstance();
         selectedEventsExpert = SelectedEventsExpert.getInstance();
+
+        bindViews();
+    }
+
+    private void bindViews()
+    {
+        utsav = findViewById(R.id.LogoHolder);
+        dareToDream = findViewById(R.id.slogan);
+        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
+
+        utsav.setAnimation(topAnim);
+        dareToDream.setAnimation(bottomAnim);
     }
 
     @Override

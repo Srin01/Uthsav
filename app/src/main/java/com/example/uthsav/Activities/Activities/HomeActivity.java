@@ -42,7 +42,7 @@ public class HomeActivity extends AppCompatActivity {
     String userId;
     User user;
 
-    int[] sampleImages = {R.drawable.ic_launcher_background, R.drawable.ic_launcher_background, R.drawable.ic_launcher_background};
+    int[] sampleImages = {R.drawable.corousel_1, R.drawable.corousel_2, R.drawable.corousel, R.drawable.corousel_4, R.drawable.corousel_5, R.drawable.corousel_6, R.drawable.corousel_7};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
     {
         eventsGridView = findViewById(R.id.events_gridView);
         carouselView = findViewById(R.id.carouselView);
-        carouselView.setPageCount(3);
+        carouselView.setPageCount(sampleImages.length);
         carouselView.setImageListener(imageListener);
         userExpert = UserExpert.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
