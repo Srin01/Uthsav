@@ -34,6 +34,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -92,6 +93,8 @@ public class MessageActivity extends AppCompatActivity {
         circleImageViewProfile = findViewById(R.id.profile_image_Toolbar);
         profileName = findViewById(R.id.userName);
 
+        updateToken(FirebaseInstanceId.getInstance().getToken());
+
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
 
         circleImageViewProfile.setImageResource(R.drawable.ic_launcher_background);
@@ -129,6 +132,22 @@ public class MessageActivity extends AppCompatActivity {
                 Toast.makeText(MessageActivity.this, "Please enter a valid text", Toast.LENGTH_SHORT).show();
             }
         });
+
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(organiserId);
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                readMessage(firebaseUser.getUid(), organiserId);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         seenMessage(organiserId);
 
     }
@@ -168,18 +187,54 @@ public class MessageActivity extends AppCompatActivity {
 
         databaseReference.child("chats").push().setValue(hashMap);
 
+        final DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chatlist")
+                .child(firebaseUser.getUid())
+                .child(organiserId);
+
+        chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()){
+                    chatRef.child("id").setValue(organiserId);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        final DatabaseReference chatRefReceiver = FirebaseDatabase.getInstance().getReference("Chatlist")
+                .child(organiserId)
+                .child(firebaseUser.getUid());
+        chatRefReceiver.child("id").setValue(firebaseUser.getUid());
+
+
         final String msg = message;
-        if(notify){
-        sendNotification(receiver,firebaseUser.getDisplayName(),msg);
-        }
-        notify = false;
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                if (notify) {
+                    sendNotification(receiver, user.getUserName(), msg);
+                }
+                notify = false;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
     private void sendNotification(String receiver, String userName, String message)
     {
-        DatabaseReference token =FirebaseDatabase.getInstance().getReference("Tokens");
-        Query query = token.orderByKey().equalTo(receiver);
+        DatabaseReference tokens =FirebaseDatabase.getInstance().getReference("Tokens");
+        Query query = tokens.orderByKey().equalTo(receiver);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -216,11 +271,17 @@ public class MessageActivity extends AppCompatActivity {
     }
 
 
+    private void updateToken(String token){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
+        Token token1 = new Token(token);
+        reference.child(firebaseUser.getUid()).setValue(token1);
+    }
+
     private void readMessage(final String myId, final String userId)
     {
         chatList = new ArrayList<>();
-        databaseReference = FirebaseDatabase.getInstance().getReference("chats");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        reference = FirebaseDatabase.getInstance().getReference("chats");
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 chatList.clear();

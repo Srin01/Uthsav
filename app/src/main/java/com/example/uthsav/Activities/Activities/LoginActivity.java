@@ -1,5 +1,6 @@
 package com.example.uthsav.Activities.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,11 +18,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity{
 
@@ -30,6 +36,7 @@ public class LoginActivity extends AppCompatActivity{
     private FirebaseAuth firebaseAuth;
     private GoogleSignInClient mGoogleSignInClient;
     UserExpert userExpert;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,13 +124,32 @@ public class LoginActivity extends AppCompatActivity{
     {
         if(fUser != null)
         {
+            String userid = fUser.getUid();
+
+            reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+
+            HashMap<String, String> hashMap = new HashMap<>();
+            hashMap.put("id", userid);
+            hashMap.put("username", fUser.getDisplayName());
+            hashMap.put("imageURL", "default");
+            hashMap.put("status", "offline");
+            hashMap.put("search", fUser.getDisplayName().toLowerCase());
+
             String personName = fUser.getDisplayName();
             String personEmail = fUser.getEmail();
-            Log.d(TAG, "updateUI: user id created to db " + fUser.getUid());
             userExpert.addUserToDB(fUser.getUid(), new User(fUser.getUid(),personEmail,personName,"gjsgjaghd","789787971" ,"ECVU","19GACSE060",null));
 
-            startActivity(new Intent(this, HomeActivity.class));
-            finish();
+            reference.setValue(hashMap).addOnCompleteListener((OnCompleteListener<Void>) task -> {
+                if (task.isSuccessful()){
+                    Log.d(TAG, "updateUI: user id created to db " + fUser.getUid());
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+        } else {
+            Toast.makeText(LoginActivity.this, "You can't register woth this email or password", Toast.LENGTH_SHORT).show();
         }
     }
 }
