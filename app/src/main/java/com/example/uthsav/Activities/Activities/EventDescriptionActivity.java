@@ -57,7 +57,8 @@ public class EventDescriptionActivity extends AppCompatActivity
         int position = getIntent().getIntExtra(EVENT_POS,0);
         event = eventExpert.getEventOfPosition(position);
 
-        eventPhoto.setImageResource(R.drawable.ic_launcher_background);
+        if(position == 0) eventPhoto.setImageResource(R.drawable.treasure_hunt);
+        if(position == 1) eventPhoto.setImageResource(R.drawable.kagada);
         eventName.setText(event.getEventName());
         eventDescription.setText(event.getEventDescription());
         eventCost.setText(event.getEventCost());

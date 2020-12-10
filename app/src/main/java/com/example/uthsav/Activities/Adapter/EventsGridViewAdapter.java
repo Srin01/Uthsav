@@ -58,7 +58,8 @@ public class EventsGridViewAdapter extends BaseAdapter {
 
         Event event = eventExpert.getEventOfPosition(position);
 
-        eventImage.setImageResource(R.drawable.ic_launcher_background);
+        if(position == 0) eventImage.setImageResource(R.drawable.treasure_hunt);
+        if(position == 1) eventImage.setImageResource(R.drawable.kagada);
         //eventImage.setImageResource(get pic of event dynamically);
         //get the text details dynamically
         eventName.setText(event.getEventName());
