@@ -36,6 +36,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -93,7 +95,7 @@ public class MessageActivity extends AppCompatActivity {
         circleImageViewProfile = findViewById(R.id.profile_image_Toolbar);
         profileName = findViewById(R.id.userName);
 
-        updateToken(FirebaseInstanceId.getInstance().getToken());
+
 
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
 
@@ -147,7 +149,7 @@ public class MessageActivity extends AppCompatActivity {
 
             }
         });
-
+        updateToken();
         seenMessage(organiserId);
 
     }
@@ -188,8 +190,8 @@ public class MessageActivity extends AppCompatActivity {
         databaseReference.child("chats").push().setValue(hashMap);
 
         final DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chatlist")
-                .child(firebaseUser.getUid())
-                .child(organiserId);
+                .child(sender)
+                .child(receiver);
 
         chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -244,13 +246,15 @@ public class MessageActivity extends AppCompatActivity {
                 {
                     Token token1 = snapshot.getValue(Token.class);
                     Data data = new Data(firebaseUser.getUid(),R.mipmap.ic_launcher,userName+": "+message,"New Message",organiserId);
+                    assert token1 != null;
                     Sender sender = new Sender(data, token1.getToken());
                     apiService.sendNotification(sender)
                             .enqueue(new Callback<MyResponse>() {
                                 @Override
-                                public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                                public void onResponse(@NotNull Call<MyResponse> call, @NotNull Response<MyResponse> response) {
                                     if(response.code() == 200)
                                     {
+                                        assert response.body() != null;
                                         if(response.body().success != 1) {
                                             Toast.makeText(MessageActivity.this, "Failed", Toast.LENGTH_SHORT).show();
                                         }
@@ -273,7 +277,8 @@ public class MessageActivity extends AppCompatActivity {
     }
 
 
-    private void updateToken(String token){
+    private void updateToken(){
+        String token = FirebaseInstanceId.getInstance().getToken();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
         Token token1 = new Token(token);
         reference.child(firebaseUser.getUid()).setValue(token1);

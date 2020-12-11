@@ -2,36 +2,29 @@ package com.example.uthsav.Activities.Notifications;
 
 public class Data
 {
-    private String userId;
+    private String user;
     private int icon;
     private String body;
     private String title;
-    private String organiserId;
+    private String sented;
 
     public Data() {
     }
 
-    public Data(String userId, int icon, String body, String title) {
-        this.userId = userId;
+    public Data(String user, int icon, String body, String title, String sented) {
+        this.user = user;
         this.icon = icon;
         this.body = body;
         this.title = title;
+        this.sented = sented;
     }
 
-    public Data(String userId, int icon, String body, String title, String organiserId) {
-        this.userId = userId;
-        this.icon = icon;
-        this.body = body;
-        this.title = title;
-        this.organiserId = organiserId;
+    public String getUser() {
+        return user;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public int getIcon() {
@@ -56,5 +49,13 @@ public class Data
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getSented() {
+        return sented;
+    }
+
+    public void setSented(String sented) {
+        this.sented = sented;
     }
 }
