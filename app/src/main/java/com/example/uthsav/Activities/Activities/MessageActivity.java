@@ -149,7 +149,7 @@ public class MessageActivity extends AppCompatActivity {
 
             }
         });
-        updateToken();
+
         seenMessage(organiserId);
 
     }
@@ -162,7 +162,7 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                 for(DataSnapshot snapshot: datasnapshot.getChildren()) {
                     Chat chat = snapshot.getValue(Chat.class);
-                    if ((chat.getReceiver().equals(firebaseUser.getUid()) && chat.getSender().equals(userId)) || (chat.getReceiver().equals(userId) && chat.getSender().equals(firebaseUser.getUid()))) {
+                    if ((chat.getReceiver().equals(firebaseUser.getUid()) && chat.getSender().equals(userId))) {
                         Map<String ,Object> map = new HashMap<>();
                         map.put("isSeen",true);
                         snapshot.getRef().updateChildren(map);
@@ -214,7 +214,7 @@ public class MessageActivity extends AppCompatActivity {
 
 
         final String msg = message;
-
+//        sendNotification(receiver,firebaseUser.getDisplayName(), msg);
         reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -245,6 +245,7 @@ public class MessageActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren())
                 {
                     Token token1 = snapshot.getValue(Token.class);
+                    Log.d("myTag", "onDataChange: Token = " + token1.getToken());
                     Data data = new Data(firebaseUser.getUid(),R.mipmap.ic_launcher,userName+": "+message,"New Message",organiserId);
                     assert token1 != null;
                     Sender sender = new Sender(data, token1.getToken());
@@ -263,7 +264,7 @@ public class MessageActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onFailure(Call<MyResponse> call, Throwable t) {
-
+                                    Toast.makeText(MessageActivity.this, "Failed again", Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }
@@ -277,13 +278,6 @@ public class MessageActivity extends AppCompatActivity {
     }
 
 
-    private void updateToken(){
-        String token = FirebaseInstanceId.getInstance().getToken();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
-        Token token1 = new Token(token);
-        reference.child(firebaseUser.getUid()).setValue(token1);
-    }
-
     private void readMessage(final String myId, final String userId)
     {
         chatList = new ArrayList<>();
@@ -296,6 +290,7 @@ public class MessageActivity extends AppCompatActivity {
                 {
                     Log.d("myTag", "onDataChange: data snap shot = " + snapshot.getChildren().toString());
                     Chat chat = snapshot.getValue(Chat.class);
+                    chat.setSeen((Boolean) snapshot.child("isSeen").getValue());
                     if((chat.getReceiver().equals(myId) && chat.getSender().equals(userId)) || (chat.getReceiver().equals(userId) && chat.getSender().equals(myId)))
                     {
                         chatList.add(chat);

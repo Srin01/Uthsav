@@ -10,10 +10,11 @@ public class Chat
     public Chat() {
     }
 
-    public Chat(String sender, String receiver, String message) {
+    public Chat(String sender, String receiver, String message,boolean isSeen) {
         this.sender = sender;
         this.receiver = receiver;
         this.message = message;
+        this.isSeen = isSeen;
     }
 
     public String getSender() {
@@ -40,7 +41,7 @@ public class Chat
         this.message = message;
     }
 
-    public boolean isSeen() {
+    public boolean IsisSeen() {
         return isSeen;
     }
 
