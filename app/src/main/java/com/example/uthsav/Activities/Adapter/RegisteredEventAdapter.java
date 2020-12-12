@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.uthsav.Activities.Expert.EventExpert;
 import com.example.uthsav.Activities.Expert.UserExpert;
 import com.example.uthsav.Activities.Modal.Event;
 import com.example.uthsav.Activities.Modal.User;
@@ -26,6 +27,7 @@ public  class RegisteredEventAdapter  extends RecyclerView.Adapter<RegisteredEve
     private User user;
     UserExpert userExpert ;
     ArrayList<String> registeredEvents ;
+    EventExpert eventExpert;
 
     public RegisteredEventAdapter(Context context, String UserId)
     {
@@ -34,8 +36,7 @@ public  class RegisteredEventAdapter  extends RecyclerView.Adapter<RegisteredEve
         userExpert = UserExpert.getInstance();
         user = userExpert.getUserOfIdFromCache(UserId);
         registeredEvents = user.getUserParticipatedEvents();
-
-
+        eventExpert = EventExpert.getInstance();
     }
 
 
@@ -52,7 +53,7 @@ public  class RegisteredEventAdapter  extends RecyclerView.Adapter<RegisteredEve
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position)
     {
-       holder.eventName.setText(registeredEvents.get(position));
+       holder.eventName.setText(eventExpert.getEventOfIdFromCache(registeredEvents.get(position)).getEventName());
        holder.eventPhoto.setImageResource(R.drawable.ic_launcher_background);
     }
 

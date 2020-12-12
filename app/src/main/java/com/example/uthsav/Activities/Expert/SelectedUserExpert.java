@@ -19,7 +19,7 @@ public class SelectedUserExpert
         this.eventId = eventId;
         eventExpert = EventExpert.getInstance();
         selectedUserList = eventExpert.getEventOfIdFromCache(eventId).getSelectedUsers();
-        Log.d("myTag", "SelectedUserExpert: " + selectedUserList.get(0) + " " + selectedUserList.get(1));
+        Log.d("myTag", "SelectedUserExpert: " + selectedUserList.get(0) );
     }
 
     public static SelectedUserExpert getInstance(String eventId)

@@ -125,12 +125,9 @@ public class EditUserProfileActivity extends AppCompatActivity
 
     private void uploadImageToFirebase(Uri imageUri) {
         final StorageReference fileRef = storageReference.child("users/"+ uid+"/profile.jpg");
-        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(EditUserProfileActivity.this, "photo successfully uploaded", Toast.LENGTH_SHORT).show();
-                fileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(uploadProfilePhoto));
-            }
+        fileRef.putFile(imageUri).addOnSuccessListener(taskSnapshot -> {
+            Toast.makeText(EditUserProfileActivity.this, "photo successfully uploaded", Toast.LENGTH_SHORT).show();
+            fileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(uploadProfilePhoto));
         }).addOnCanceledListener(() -> Toast.makeText(EditUserProfileActivity.this, "Upload failed", Toast.LENGTH_SHORT).show());
     }
 

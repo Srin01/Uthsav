@@ -18,10 +18,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.GridView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.uthsav.Activities.Adapter.EventsGridViewAdapter;
+import com.example.uthsav.Activities.Expert.EventExpert;
 import com.example.uthsav.Activities.Expert.UserExpert;
 import com.example.uthsav.Activities.Modal.User;
 import com.example.uthsav.R;
@@ -43,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     String userId;
     User user;
+    EventExpert eventExpert;
 
     int[] sampleImages = {R.drawable.corousel_1, R.drawable.corousel_2, R.drawable.corousel, R.drawable.corousel_4, R.drawable.corousel_5, R.drawable.corousel_6, R.drawable.corousel_7};
 
@@ -50,7 +53,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation_activity);
-
         bindViews();
         setUpNavigationDrawerIcon();
         setUpListeners();
@@ -70,10 +72,6 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
-
-
-
     }
 
     private void bindViews()
@@ -83,6 +81,7 @@ public class HomeActivity extends AppCompatActivity {
         carouselView.setPageCount(sampleImages.length);
         carouselView.setImageListener(imageListener);
         userExpert = UserExpert.getInstance();
+        eventExpert = EventExpert.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         userId = firebaseAuth.getCurrentUser().getUid();
         Log.d("myTag", "bindViews: user id " + userId + " obtained");
