@@ -10,8 +10,6 @@ import android.content.ContextWrapper;
 import android.net.Uri;
 import android.os.Build;
 
-import com.google.firebase.messaging.RemoteMessage;
-
 public class OreoNotification extends ContextWrapper {
 
     private static final String CHANNEL_ID ="com.example.uthsav";
