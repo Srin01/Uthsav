@@ -153,7 +153,13 @@ public class MessageActivity extends AppCompatActivity {
         });
 
         seenMessage(organiserId);
+        updateToken(FirebaseInstanceId.getInstance().getToken());
+    }
 
+    private void updateToken(String token){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
+        Token token1 = new Token(token);
+        reference.child(firebaseUser.getUid()).setValue(token1);
     }
 
     private void seenMessage(String userId)
