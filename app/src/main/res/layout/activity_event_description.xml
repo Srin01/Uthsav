@@ -8,70 +8,71 @@
     tools:context=".Activities.Activities.EventDescriptionActivity">
 
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#03A9F4"
-        tools:ignore="MissingConstraints" />
-
     <TextView
         android:id="@+id/eventName_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:layout_marginBottom="680dp"
+        android:fontFamily="@font/mallanna"
         android:text="Treasure Hunt"
-        android:textSize="22sp"
-        android:textStyle="bold"
+        android:textColor="#2196F3"
+        android:textSize="30sp"
+        android:textAllCaps="true"
 
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.098" />
+
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/eventImage"
         android:layout_width="match_parent"
         android:layout_height="196dp"
 
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:src="@drawable/dog"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eventName_textView"
-        app:layout_constraintVertical_bias="0.098"
+        app:layout_constraintVertical_bias="0.02"
         tools:ignore="MissingConstraints" />
-
 
     <TextView
         android:id="@+id/eventDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="In this event participants are required to find the treasure hidden in the college."
-        android:textSize="22sp"
-        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="@font/mallanna"
         android:padding="10dp"
+        android:text="In this event participants are required to find the treasure hidden in the college."
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eventImage"
-        app:layout_constraintVertical_bias="0.167" />
+        app:layout_constraintVertical_bias="0.052" />
 
     <TextView
         android:id="@+id/eventTime"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
+
         android:text="Time : 4:00 pm"
         android:textSize="22sp"
-        android:padding="6dp"
-
         android:textStyle="bold"
+        android:padding="10dp"
+        android:fontFamily="@font/mallanna"
+        android:textColor="#000000"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -87,8 +88,11 @@
         android:layout_height="wrap_content"
         android:text="Cost : 30 per head"
         android:textSize="22sp"
+        android:padding="10dp"
+        android:fontFamily="@font/mallanna"
         android:textStyle="bold"
-        android:padding="5dp"
+        android:textColor="#000000"
+
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eventTime"
@@ -101,31 +105,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:background="#2196F3"
+        android:onClick="onClickMessage"
         android:text="Message"
         android:textAllCaps="false"
-        android:textSize="20sp"
-        android:onClick="onClickMessage"
-
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:padding="10sp"
+        android:fontFamily="@font/brawler"
+        android:drawableLeft="@drawable/message_icon"
+        android:drawablePadding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintHorizontal_bias="0.182"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eventCost"
         app:layout_constraintVertical_bias="0.496" />
-
 
     <Button
         android:id="@+id/buy_ticket_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:background="#2196F3"
+        android:drawableLeft="@drawable/ticket_icon"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/brawler"
+        android:onClick="onClickBuyTicket"
+        android:padding="10dp"
         android:text="Buy Ticket"
         android:textAllCaps="false"
-        android:textSize="20sp"
-        android:onClick="onClickBuyTicket"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.575"
         app:layout_constraintStart_toEndOf="@+id/Message_button"
         app:layout_constraintTop_toBottomOf="@+id/eventCost" />
 

@@ -47,6 +47,10 @@
         <meta-data
             android:name="com.phonepe.android.sdk.isUAT"
             android:value="true"/>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
         <activity android:name=".Activities.Activities.HomeActivity" />
         <activity android:name=".Activities.Activities.LoginActivity" />
         <activity android:name=".Activities.Activities.EditUserProfileActivity" />

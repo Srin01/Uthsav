@@ -15,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +27,7 @@ import com.example.uthsav.Activities.Modal.User;
 import com.example.uthsav.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.phonepe.intent.sdk.api.PhonePe;
+
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -67,6 +69,9 @@ public class HomeActivity extends AppCompatActivity {
             intent.putExtra(EVENT_POS,position);
             startActivity(intent);
         });
+
+
+
 
 
     }

@@ -1,6 +1,7 @@
 package com.example.uthsav.Activities.Adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.uthsav.Activities.Expert.EventExpert;
 import com.example.uthsav.Activities.Modal.Event;
 import com.example.uthsav.R;
+
+import org.w3c.dom.Text;
+
+import java.util.List;
 
 public class EventsGridViewAdapter extends BaseAdapter {
 
@@ -18,8 +26,7 @@ public class EventsGridViewAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     EventExpert eventExpert;
 
-    public EventsGridViewAdapter(Context c)
-    {
+    public EventsGridViewAdapter(Context c) {
         this.c = c;
         eventExpert = EventExpert.getInstance();
     }
@@ -41,13 +48,11 @@ public class EventsGridViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
-        if(inflater == null)
-        {
+        if (inflater == null) {
             inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
-        if(view == null)
-        {
+        if (view == null) {
             view = inflater.inflate(R.layout.event_item, null);
         }
 
@@ -68,3 +73,4 @@ public class EventsGridViewAdapter extends BaseAdapter {
         return view;
     }
 }
+
