@@ -48,6 +48,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.uthsav.Activities.Drivers.EventDriver.TAG;
+
 public class MessageActivity extends AppCompatActivity {
     public static final String ORGANISER_ID = "userId";
     FirebaseUser firebaseUser;
@@ -249,6 +251,7 @@ public class MessageActivity extends AppCompatActivity {
                     Data data = new Data(firebaseUser.getUid(),R.mipmap.ic_launcher,userName+": "+message,"New Message",organiserId);
                     assert token1 != null;
                     Sender sender = new Sender(data, token1.getToken());
+                    Log.d(TAG, "OnDataChange: sending to  = " + sender.to + " " + sender.data);
                     apiService.sendNotification(sender)
                             .enqueue(new Callback<MyResponse>() {
                                 @Override
@@ -256,6 +259,7 @@ public class MessageActivity extends AppCompatActivity {
                                     if(response.code() == 200)
                                     {
                                         assert response.body() != null;
+                                        Log.d(TAG, "Onresponse: sented to  " + sender.to);
                                         if(response.body().success != 1) {
                                             Toast.makeText(MessageActivity.this, "Failed", Toast.LENGTH_SHORT).show();
                                         }

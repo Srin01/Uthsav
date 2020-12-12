@@ -10,6 +10,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -20,8 +21,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import static com.example.uthsav.Activities.Drivers.EventDriver.TAG;
 
 public class MyFirebaseMessaging extends FirebaseMessagingService
 {
@@ -34,6 +38,7 @@ public class MyFirebaseMessaging extends FirebaseMessagingService
         if(firebaseUser != null)
         {
             updateToken(refreshToken);
+            Log.d(TAG, "onNewToken: updating new Token "+ refreshToken);
         }
     }
 
@@ -50,10 +55,13 @@ public class MyFirebaseMessaging extends FirebaseMessagingService
         super.onMessageReceived(remoteMessage);
         String sented = remoteMessage.getData().get("sented");
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        Log.d(TAG, "onMessageReceived: sented = " + sented);
+        Log.d(TAG, "onMessageReceived: userId = " + firebaseUser.getUid());
         if(firebaseUser!= null && sented.equals(firebaseUser.getUid()))
         {
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
                 sendOreoNotification(remoteMessage);
+                Log.d(TAG, "getOreoNotification: oreo notification getting on Message Recived created");
             }
             else {
                 sendNotification(remoteMessage);
@@ -84,6 +92,8 @@ public class MyFirebaseMessaging extends FirebaseMessagingService
         {
             i = j;
         }
+        Log.d(TAG, "getOreoNotification: oreo notification sending created");
+        Log.d(TAG, "sendOreoNotification: user = " +user +" "+ title +" "+ body);
         oreoNotification.getNotificationManager().notify(i, builder.build());
 
     }

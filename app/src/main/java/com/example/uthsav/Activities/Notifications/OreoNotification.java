@@ -9,6 +9,9 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.net.Uri;
 import android.os.Build;
+import android.util.Log;
+
+import static com.example.uthsav.Activities.Drivers.EventDriver.TAG;
 
 public class OreoNotification extends ContextWrapper {
 
@@ -34,6 +37,7 @@ public class OreoNotification extends ContextWrapper {
         notificationChannel.enableLights(false);
         notificationChannel.enableVibration(true);
         notificationChannel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        Log.d(TAG, "getOreoNotification: oreo notification channel created");
         getNotificationManager().createNotificationChannel(notificationChannel);
     }
 
@@ -42,6 +46,7 @@ public class OreoNotification extends ContextWrapper {
         if(notificationManager == null)
         {
             notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            Log.d(TAG, "getOreoNotification: oreo notification Manager created");
         }
         return notificationManager;
     }
@@ -49,6 +54,7 @@ public class OreoNotification extends ContextWrapper {
     @TargetApi(Build.VERSION_CODES.O)
     public Notification.Builder getOreoNotification(String title,String body ,PendingIntent pendingIntent, Uri soundUri, String icon)
     {
+        Log.d(TAG, "getOreoNotification: oreo notification builder created");
         return new Notification.Builder(getApplicationContext(), CHANNEL_ID)
                 .setContentIntent(pendingIntent)
                 .setContentTitle(title)

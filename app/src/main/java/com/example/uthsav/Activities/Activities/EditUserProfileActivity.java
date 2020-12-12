@@ -1,17 +1,28 @@
 package com.example.uthsav.Activities.Activities;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.uthsav.Activities.Expert.UserExpert;
 import com.example.uthsav.Activities.Modal.User;
 import com.example.uthsav.R;
+import com.google.android.gms.tasks.OnCanceledListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -24,6 +35,7 @@ public class EditUserProfileActivity extends AppCompatActivity
     TextView uploadPhoto;
     FirebaseAuth firebaseAuth;
     UserExpert userExpert;
+    StorageReference storageReference;
 
     TextInputLayout name_textInputLayout;
     TextInputLayout collegeName_textInputLayout;
@@ -95,10 +107,42 @@ public class EditUserProfileActivity extends AppCompatActivity
         collegeName_editText = findViewById(R.id.College_name);
         emailId_editText = findViewById(R.id.emailId_editText);
         registerNumber_editText = findViewById(R.id.registerNumber);
+
+        storageReference = FirebaseStorage.getInstance().getReference();
+        StorageReference profileRef = storageReference.child("users/"+ uid+"/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(uploadProfilePhoto));
+    }
+
+    public void uploadPhoto(View view) {
+        Intent openGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(openGallery, 1000);
     }
 
     public void onClickSave(View view) {
         getValues();
         updateValues();
+    }
+
+    private void uploadImageToFirebase(Uri imageUri) {
+        final StorageReference fileRef = storageReference.child("users/"+ uid+"/profile.jpg");
+        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(EditUserProfileActivity.this, "photo successfully uploaded", Toast.LENGTH_SHORT).show();
+                fileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(uploadProfilePhoto));
+            }
+        }).addOnCanceledListener(() -> Toast.makeText(EditUserProfileActivity.this, "Upload failed", Toast.LENGTH_SHORT).show());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1000){
+            if(resultCode == RESULT_OK)
+            {
+                Uri imageUri = data.getData();
+                uploadImageToFirebase(imageUri);
+            }
+        }
     }
 }
