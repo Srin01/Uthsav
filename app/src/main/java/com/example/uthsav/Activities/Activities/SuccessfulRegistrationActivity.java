@@ -1,8 +1,10 @@
 package com.example.uthsav.Activities.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +22,7 @@ public class SuccessfulRegistrationActivity extends AppCompatActivity {
     TextView successfulRegistration, eventName;
     Button continueButton;
     ConstraintLayout constraintLayout;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,6 @@ public class SuccessfulRegistrationActivity extends AppCompatActivity {
         continueButton.setAnimation(bottomAnim);
     }
 
-
     private void bindViews()
     {
         successfulRegistration = findViewById(R.id.successful_registration_textView);
@@ -43,6 +45,9 @@ public class SuccessfulRegistrationActivity extends AppCompatActivity {
 
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
+
+        toolbar = findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
     }
 
     public void onClickBomb(View view)
@@ -50,5 +55,10 @@ public class SuccessfulRegistrationActivity extends AppCompatActivity {
         CommonConfetti.rainingConfetti(constraintLayout,
                 new int[]{Color.parseColor("#f45c2c"), Color.parseColor("#ecca72"), Color.parseColor("#048181"), Color.parseColor("#5a9c7d"), Color.parseColor("#9fbeb2"), Color.parseColor("#366854")})
                 .infinite();
+    }
+
+    public void onClickToolBar(View view)
+    {
+        startActivity(new Intent(this, HomeActivity.class));
     }
 }

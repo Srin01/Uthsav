@@ -3,11 +3,13 @@ package com.example.uthsav.Activities.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -43,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     String userId;
     User user;
+    Toolbar toolbar;
 
     int[] sampleImages = {R.drawable.corousel_1, R.drawable.corousel_2, R.drawable.corousel, R.drawable.corousel_4, R.drawable.corousel_5, R.drawable.corousel_6, R.drawable.corousel_7};
 
@@ -69,17 +72,14 @@ public class HomeActivity extends AppCompatActivity {
             intent.putExtra(EVENT_POS,position);
             startActivity(intent);
         });
-
-
-
-
-
     }
 
+    @SuppressLint("NewApi")
     private void bindViews()
     {
         eventsGridView = findViewById(R.id.events_gridView);
         carouselView = findViewById(R.id.carouselView);
+        toolbar = findViewById(R.id.toolbar);
         carouselView.setPageCount(sampleImages.length);
         carouselView.setImageListener(imageListener);
         userExpert = UserExpert.getInstance();
@@ -89,7 +89,13 @@ public class HomeActivity extends AppCompatActivity {
         userExpert.printUsers();
         user = userExpert.getUserOfIdFromCache(userId);
         Log.d("myTag", "bindViews: user object " + user + " obtained");
+        setSupportActionBar(toolbar);
+    }
 
+    public void onClickHomeScreen(View view)
+    {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
     }
 
     public void onClickShowNotifications(View view)

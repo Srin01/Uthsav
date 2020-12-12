@@ -1,10 +1,13 @@
 package com.example.uthsav.Activities.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.uthsav.Activities.Adapter.SelectedStudentListAdapter;
@@ -19,6 +22,7 @@ public class SelectedStudentsListActivity extends AppCompatActivity {
     String eventId;
     private RecyclerView selectedStudentListRecyclerView;
     SelectedStudentListAdapter selectedStudentListAdapter;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,5 +41,13 @@ public class SelectedStudentsListActivity extends AppCompatActivity {
         eventId = getIntent().getStringExtra(EVENT_ID);
         eventName = findViewById(R.id.selectedStudentsList_eventName);
         selectedStudentListRecyclerView = findViewById(R.id.selectedStudentsList_recyclerView);
+
+        toolbar = findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
+    }
+
+    public void onClickToolBar(View view)
+    {
+        startActivity(new Intent(this, HomeActivity.class));
     }
 }

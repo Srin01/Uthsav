@@ -1,8 +1,11 @@
 package com.example.uthsav.Activities.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -22,6 +25,7 @@ public class SearchEventActivity extends AppCompatActivity {
     private ArrayList<String> eventNames = new ArrayList<String>();
     private ArrayAdapter<String> adapter;
     EventExpert eventExpert = EventExpert.getInstance();
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,5 +61,13 @@ public class SearchEventActivity extends AppCompatActivity {
     {
         searchView = findViewById(R.id.searchView);
         listView = findViewById(R.id.event_list_view);
+
+        toolbar = findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
+    }
+
+    public void onClickToolBar(View view)
+    {
+        startActivity(new Intent(this, HomeActivity.class));
     }
 }

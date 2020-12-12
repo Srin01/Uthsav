@@ -2,6 +2,7 @@ package com.example.uthsav.Activities.Activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -56,7 +57,7 @@ public class EditUserProfileActivity extends AppCompatActivity
     String userEmail;
     String userRegisterNumber;
     String uid;
-
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,8 @@ public class EditUserProfileActivity extends AppCompatActivity
         userExpert = UserExpert.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         uid = firebaseAuth.getCurrentUser().getUid();
+        toolbar = findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
 
         uploadProfilePhoto = findViewById(R.id.uploadPhoto_imageView);
         uploadPhoto = findViewById(R.id.uploadphoto_textview);
@@ -144,5 +147,10 @@ public class EditUserProfileActivity extends AppCompatActivity
                 uploadImageToFirebase(imageUri);
             }
         }
+    }
+
+    public void onClickToolBar(View view)
+    {
+        startActivity(new Intent(this, HomeActivity.class));
     }
 }

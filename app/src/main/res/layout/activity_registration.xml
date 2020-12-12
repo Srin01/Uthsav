@@ -8,6 +8,16 @@
     tools:context=".Activities.Activities.RegistrationActivity">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightBlue"
+        android:elevation="5dp"
+        tools:ignore="MissingConstraints"
+        android:onClick="onClickToolBar"/>
+
+
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"

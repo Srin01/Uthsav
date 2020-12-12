@@ -1,6 +1,7 @@
 package com.example.uthsav.Activities.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +24,6 @@ import com.example.uthsav.Activities.Expert.UserExpert;
 import com.example.uthsav.Activities.Modal.User;
 import com.example.uthsav.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.zxing.WriterException;
@@ -31,7 +31,6 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -75,7 +74,7 @@ public class UserProfileActivity extends AppCompatActivity
         setContentView(R.layout.userprofileactivity);
 
         bindViews();
-        setUpViews();
+        //setUpViews();
         userProfileActivityRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         userProfileActivityAdapter = new UserProfileActivityAdapter(this,userId);
         userProfileActivityRecyclerView.setAdapter(userProfileActivityAdapter);
@@ -125,6 +124,7 @@ public class UserProfileActivity extends AppCompatActivity
         userId =getIntent().getStringExtra(USER_ID);
         storageReference = FirebaseStorage.getInstance().getReference();
         user = userExpert.getUserOfIdFromCache(userId);
+
     }
 
     private void qrCodeGenerator()

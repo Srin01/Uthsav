@@ -1,12 +1,14 @@
 package com.example.uthsav.Activities.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.uthsav.Activities.Adapter.SelectionListAdapter;
@@ -20,6 +22,7 @@ public class SelectionListActivity extends AppCompatActivity implements Selectio
     RecyclerView selectionListRecyclerView;
     SelectionListAdapter selectionListAdapter;
     SelectedEventsExpert selectedEventsExpert;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,6 +42,9 @@ public class SelectionListActivity extends AppCompatActivity implements Selectio
         selectedEventsExpert = SelectedEventsExpert.getInstance();
         selectionList = findViewById(R.id.selectionList_textView);
         selectionListRecyclerView = findViewById(R.id.selectionList_recyclerView);
+
+        toolbar = findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -47,5 +53,10 @@ public class SelectionListActivity extends AppCompatActivity implements Selectio
         Intent intent = new Intent(this, SelectedStudentsListActivity.class);
         intent.putExtra(EVENT_ID,selectedEventsExpert.getEventOfPosition(position).getEventId());
         startActivity(intent);
+    }
+
+    public void onClickToolBar(View view)
+    {
+        startActivity(new Intent(this, HomeActivity.class));
     }
 }

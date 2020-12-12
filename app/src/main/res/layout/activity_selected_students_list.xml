@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".Activities.Activities.SelectedStudentsListActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightBlue"
+        android:elevation="5dp"
+        tools:ignore="MissingConstraints"
+        android:onClick="onClickToolBar"/>
+
     <TextView
         android:id="@+id/selectedStudentsList_eventName"
         android:layout_width="wrap_content"
@@ -16,7 +25,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar1" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/selectedStudentsList_recyclerView"

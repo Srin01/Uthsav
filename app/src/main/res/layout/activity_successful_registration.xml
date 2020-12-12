@@ -8,6 +8,15 @@
     android:layout_height="match_parent"
     tools:context=".Activities.Activities.SuccessfulRegistrationActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightBlue"
+        android:elevation="5dp"
+        tools:ignore="MissingConstraints"
+        android:onClick="onClickToolBar"/>
+
     <com.github.jinatonic.confetti.ConfettiView
         android:id="@+id/confettiView"
         android:layout_width="match_parent"
@@ -16,6 +25,7 @@
 
     <TextView
         android:id="@+id/successful_registration_textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/caudex"
         android:text="You have successfully registered for the event"
