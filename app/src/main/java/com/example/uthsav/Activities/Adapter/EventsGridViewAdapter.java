@@ -15,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.uthsav.Activities.Expert.EventExpert;
 import com.example.uthsav.Activities.Modal.Event;
 import com.example.uthsav.R;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -25,6 +28,8 @@ public class EventsGridViewAdapter extends BaseAdapter {
     private Context c;
     private LayoutInflater inflater;
     EventExpert eventExpert;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageReference = storage.getReference() ;
 
     public EventsGridViewAdapter(Context c) {
         this.c = c;
@@ -62,11 +67,8 @@ public class EventsGridViewAdapter extends BaseAdapter {
         TextView eventPrice = view.findViewById(R.id.event_price_gridView);
 
         Event event = eventExpert.getEventOfPosition(position);
-
-        if(position == 0) eventImage.setImageResource(R.drawable.treasure_hunt);
-        if(position == 1) eventImage.setImageResource(R.drawable.kagada);
-        //eventImage.setImageResource(get pic of event dynamically);
-        //get the text details dynamically
+        StorageReference profileRef = storageReference.child("events/"+ event.getEventId()+"/"+event.getEventId()+".jpeg");
+        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(eventImage));
         eventName.setText(event.getEventName());
         eventOneLineDescription.setText(event.getEventDescription());
         eventPrice.setText(event.getEventCost());

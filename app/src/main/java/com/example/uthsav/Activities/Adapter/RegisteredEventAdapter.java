@@ -15,6 +15,9 @@ import com.example.uthsav.Activities.Expert.UserExpert;
 import com.example.uthsav.Activities.Modal.Event;
 import com.example.uthsav.Activities.Modal.User;
 import com.example.uthsav.R;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +31,8 @@ public  class RegisteredEventAdapter  extends RecyclerView.Adapter<RegisteredEve
     UserExpert userExpert ;
     ArrayList<String> registeredEvents ;
     EventExpert eventExpert;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageReference = storage.getReference() ;
 
     public RegisteredEventAdapter(Context context, String UserId)
     {
@@ -53,8 +58,10 @@ public  class RegisteredEventAdapter  extends RecyclerView.Adapter<RegisteredEve
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position)
     {
-       holder.eventName.setText(eventExpert.getEventOfIdFromCache(registeredEvents.get(position)).getEventName());
-       holder.eventPhoto.setImageResource(R.drawable.ic_launcher_background);
+        Event event = eventExpert.getEventOfIdFromCache(registeredEvents.get(position));
+       holder.eventName.setText(event.getEventName());
+       StorageReference profileRef = storageReference.child("events/"+ event.getEventId()+"/"+event.getEventId()+".jpeg");
+       profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(holder.eventPhoto));
     }
 
     @Override

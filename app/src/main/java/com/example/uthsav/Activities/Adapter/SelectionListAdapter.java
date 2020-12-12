@@ -15,12 +15,17 @@ import com.example.uthsav.Activities.Expert.SelectedEventsExpert;
 import com.example.uthsav.Activities.Expert.SelectedUserExpert;
 import com.example.uthsav.Activities.Modal.Event;
 import com.example.uthsav.R;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class SelectionListAdapter extends RecyclerView.Adapter<SelectionListAdapter.MyViewHolder>
 {
     private Context context;
     private SelectedEventsExpert selectedEventsExpert;
     OnEventClickListener onEventListener;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageReference = storage.getReference() ;
 
     public SelectionListAdapter(Context c,OnEventClickListener onEventListener)
     {
@@ -47,7 +52,8 @@ public class SelectionListAdapter extends RecyclerView.Adapter<SelectionListAdap
 
         //here the data from expert is required
         Event event = selectedEventsExpert.getEventOfPosition(position);
-        eventImage.setImageResource(R.drawable.ic_launcher_background);
+        StorageReference profileRef = storageReference.child("events/"+ event.getEventId()+"/"+event.getEventId()+".jpeg");
+        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(eventImage));
         eventName.setText(event.getEventName());
     }
 

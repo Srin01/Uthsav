@@ -23,6 +23,9 @@ import com.example.uthsav.Activities.Modal.Event;
 import com.example.uthsav.Activities.Modal.User;
 import com.example.uthsav.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +46,8 @@ public class EventDescriptionActivity extends AppCompatActivity
     Event event;
     String userId;
     User user;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageReference = storage.getReference() ;
 
     String GOOGLE_PAY_PACKAGE_NAME = "com.google.android.apps.nbu.paisa.user";
     int GOOGLE_PAY_REQUEST_CODE = 123;
@@ -63,6 +68,8 @@ public class EventDescriptionActivity extends AppCompatActivity
         eventDescription.setText(event.getEventDescription());
         eventCost.setText(event.getEventCost());
         eventTimings.setText(event.getEventTime());
+        StorageReference profileRef = storageReference.child("events/"+ event.getEventId()+"/"+event.getEventId()+".jpeg");
+        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(eventPhoto));
     }
 
     private void bindViews()

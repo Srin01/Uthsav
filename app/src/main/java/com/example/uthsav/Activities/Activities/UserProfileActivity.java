@@ -65,7 +65,6 @@ public class UserProfileActivity extends AppCompatActivity
     JSONObject jsonObject;
     Uri uri;
     StorageReference storageReference;
-
     UserProfileActivityAdapter userProfileActivityAdapter;
 
     @Override
@@ -96,6 +95,8 @@ public class UserProfileActivity extends AppCompatActivity
         EmailId.setText(user.getUserMail());
         CollegeName.setText(user.getUserCollageName());
         contactNumber.setText(user.getUserPhoneNumber());
+        StorageReference profileRef = storageReference.child("users/"+userId+"/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profilePhoto));
 
     }
 
@@ -168,7 +169,6 @@ public class UserProfileActivity extends AppCompatActivity
         StorageReference fileRef = storageReference.child("users/" +userId+"qrCode.jpg");
         final StorageReference finalFileRef = fileRef;
         fileRef.putFile(imageUri).addOnSuccessListener(taskSnapshot -> {
-            Toast.makeText(UserProfileActivity.this, "certificate successfully uploaded", Toast.LENGTH_SHORT).show();
             finalFileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(qrCode));
         }).addOnCanceledListener(() -> Toast.makeText(UserProfileActivity.this, "Upload failed", Toast.LENGTH_SHORT).show());
     }
