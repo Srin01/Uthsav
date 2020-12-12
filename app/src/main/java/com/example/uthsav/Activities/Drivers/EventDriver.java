@@ -47,29 +47,29 @@ public class EventDriver
             }
         });
         try {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return events;
     }
 
-    public Event getEventOfId(String id)  {
-        final Event[] event = {null};
-        firebaseFirestore.collection("events").document(id).get().addOnSuccessListener(documentSnapshot ->
-        {
-            if(documentSnapshot.exists())
-            {
-              event[0] = documentSnapshot.toObject(Event.class);
-            }
-        });
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return event[0];
-    }
+//    public Event getEventOfId(String id)  {
+//        final Event[] event = {null};
+//        firebaseFirestore.collection("events").document(id).get().addOnSuccessListener(documentSnapshot ->
+//        {
+//            if(documentSnapshot.exists())
+//            {
+//              event[0] = documentSnapshot.toObject(Event.class);
+//            }
+//        });
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        return event[0];
+//    }
 
     public void setRoundDone(String evenId)
     {
@@ -109,6 +109,11 @@ public class EventDriver
                 Log.d(TAG, "getEventOfRoundDone: "+ task.getException());
             }
         });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return events;
     }
 }

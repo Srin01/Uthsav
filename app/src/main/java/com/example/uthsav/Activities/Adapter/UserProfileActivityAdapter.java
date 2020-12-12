@@ -16,6 +16,9 @@ import com.example.uthsav.Activities.Expert.UserExpert;
 import com.example.uthsav.Activities.Modal.Event;
 import com.example.uthsav.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -28,6 +31,8 @@ public class UserProfileActivityAdapter extends RecyclerView.Adapter<UserProfile
     EventExpert eventExpert;
     UserDriver userDriver;
     String userId;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageReference = storage.getReference() ;
 
     public UserProfileActivityAdapter(Context c, String userId) {
         context = c;
@@ -52,8 +57,10 @@ public class UserProfileActivityAdapter extends RecyclerView.Adapter<UserProfile
         ImageView eventImage = v.findViewById(R.id.selectionList_eventImage);
         TextView eventName = v.findViewById(R.id.selectionList_eventName);
 
-        eventName.setText(eventExpert.getEventOfIdFromCache(eventIDs.get(position)).getEventName());
-        eventImage.setImageResource(R.drawable.ic_launcher_background);
+        Event event = eventExpert.getEventOfIdFromCache(eventIDs.get(position));
+        StorageReference profileRef = storageReference.child("events/"+ event.getEventId()+"/"+event.getEventId()+".jpeg");
+        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(eventImage));
+        eventName.setText(event.getEventName());
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.uthsav.Activities.Expert;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.example.uthsav.Activities.Drivers.UserDriver;
@@ -16,7 +17,7 @@ public class UserExpert
     private UserExpert() throws InterruptedException {
         userDriver = new UserDriver();
         users = userDriver.getAllUsersFromDB();
-        Thread.sleep(3000);
+        Thread.sleep(1000);
     }
 
     public User getUserOfPosition(int position)
@@ -61,28 +62,28 @@ public class UserExpert
         userDriver.addUserToDB(uid,user);
     }
 
-    public boolean isEventAlreadyRegistered(String uid, String eventId)
-    {
-        User user =  getUserOfIdFromCache(uid);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        ArrayList<String> events = user.getUserParticipatedEvents();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        for (int i = 0; i <events.size() ; i++) {
-            if(events.get(i).equals(eventId))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+//    public boolean isEventAlreadyRegistered(String uid, String eventId)
+//    {
+//        User user =  getUserOfIdFromCache(uid);
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        ArrayList<String> events = user.getUserParticipatedEvents();
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        for (int i = 0; i <events.size() ; i++) {
+//            if(events.get(i).equals(eventId))
+//            {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     private void addEventToUserList(String uid,String eventId)
     {
@@ -94,7 +95,8 @@ public class UserExpert
         for (int i = 0; i <users.size() ; i++) {
             if(users.get(i).getUserId().equals(uid))
             {
-                return users.get(i);
+                User user = users.get(i);
+                return user;
             }
         }
         return null;

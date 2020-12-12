@@ -20,6 +20,8 @@ import com.example.uthsav.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.auth.User;
 
+import static com.example.uthsav.Activities.Activities.HomeActivity.USER_ID;
+
 public class SplashActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
@@ -35,9 +37,6 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         firebaseAuth = FirebaseAuth.getInstance();
-        userExpert = UserExpert.getInstance();
-        eventExpert = EventExpert.getInstance();
-        selectedEventsExpert = SelectedEventsExpert.getInstance();
 
         bindViews();
     }
@@ -48,7 +47,6 @@ public class SplashActivity extends AppCompatActivity {
         dareToDream = findViewById(R.id.slogan);
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
-
         utsav.setAnimation(topAnim);
         dareToDream.setAnimation(bottomAnim);
     }
@@ -62,6 +60,9 @@ public class SplashActivity extends AppCompatActivity {
 
         final Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(() -> {
+            eventExpert = EventExpert.getInstance();
+            selectedEventsExpert = SelectedEventsExpert.getInstance();
+            userExpert = UserExpert.getInstance();
             startActivity(intent);
             finish();
         }, 3000);

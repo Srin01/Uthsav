@@ -44,35 +44,35 @@ public class UserDriver
                     e.printStackTrace();
             Log.d(TAG, "getAllUsersFromDB: " + e);
         });
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         return users;
     }
 
-    public User getUserOfId(String uid)
-    {
-        final User[] user = new User[1];
-        firebaseFirestore.collection("users").document(uid).get().addOnCompleteListener(task -> {
-            if(task.isSuccessful())
-            {
-                DocumentSnapshot documentSnapshots = task.getResult();
-                assert documentSnapshots != null;
-                if(documentSnapshots.exists())
-                {
-                    user[0] = (User) documentSnapshots.getData();
-                }
-            }
-            else {
-                Log.d(TAG, "getUserOfId: no such user " + uid + " user exists");
-                user[0] = null;
-            }
-        });
-        try {
-        Thread.sleep(2000);
-    } catch (InterruptedException e) {
-        e.printStackTrace();
-    }
-        return user[0];
-    }
+//    public User getUserOfId(String uid)
+//    {
+//        final User[] user = new User[1];
+//        firebaseFirestore.collection("users").document(uid).get().addOnCompleteListener(task -> {
+//            if(task.isSuccessful())
+//            {
+//                DocumentSnapshot documentSnapshots = task.getResult();
+//                assert documentSnapshots != null;
+//                if(documentSnapshots.exists())
+//                {
+//                    user[0] = (User) documentSnapshots.getData();
+//                }
+//            }
+//            else {
+//                Log.d(TAG, "getUserOfId: no such user " + uid + " user exists");
+//                user[0] = null;
+//            }
+//        });
+//        try {
+//        Thread.sleep(0);
+//    } catch (InterruptedException e) {
+//        e.printStackTrace();
+//    }
+//        return user[0];
+//    }
 
     public void addEventsRegistered(String uid, String eventId)
     {

@@ -44,7 +44,6 @@ public class EventDescriptionActivity extends AppCompatActivity
     Event event;
     String userId;
     User user;
-    Toolbar toolbar;
 
     String GOOGLE_PAY_PACKAGE_NAME = "com.google.android.apps.nbu.paisa.user";
     int GOOGLE_PAY_REQUEST_CODE = 123;
@@ -67,32 +66,22 @@ public class EventDescriptionActivity extends AppCompatActivity
         eventTimings.setText(event.getEventTime());
     }
 
-    @SuppressLint("NewApi")
     private void bindViews()
     {
         eventName = findViewById(R.id.eventName_textView);
         eventPhoto = findViewById(R.id.eventImage);
-        toolbar = findViewById(R.id.toolbar1);
         eventDescription = findViewById(R.id.eventDescription);
         eventTimings = findViewById(R.id.eventTime);
         eventCost = findViewById(R.id.eventCost);
         userExpert = UserExpert.getInstance();
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         user = userExpert.getUserOfIdFromCache(userId);
-
-        setSupportActionBar(toolbar);
     }
 
     public void onClickMessage(View view)
     {
         Intent intent = new Intent(this, MessageActivity.class);
         intent.putExtra(ORGANISER_ID,event.getOrganiserId());
-        startActivity(intent);
-    }
-
-    public void onClickHomeScreen(View view)
-    {
-        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 
@@ -214,10 +203,5 @@ public class EventDescriptionActivity extends AppCompatActivity
             }
         }
         return false;
-    }
-
-    public void onClickToolBar(View view)
-    {
-        startActivity(new Intent(this, HomeActivity.class));
     }
 }
