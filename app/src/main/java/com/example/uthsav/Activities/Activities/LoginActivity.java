@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity{
 
@@ -134,7 +135,7 @@ public class LoginActivity extends AppCompatActivity{
             hashMap.put("username", fUser.getDisplayName());
             hashMap.put("imageURL", "default");
             hashMap.put("status", "offline");
-            hashMap.put("search", fUser.getDisplayName().toLowerCase());
+            hashMap.put("search", Objects.requireNonNull(fUser.getDisplayName()).toLowerCase());
 
             String personName = fUser.getDisplayName();
             String personEmail = fUser.getEmail();
@@ -149,8 +150,7 @@ public class LoginActivity extends AppCompatActivity{
                     finish();
                 }
             });
-        } else {
-            Toast.makeText(LoginActivity.this, "You can't register woth this email or password", Toast.LENGTH_SHORT).show();
-        }
+        }  //            Toast.makeText(LoginActivity.this, "You can't register woth this email or password", Toast.LENGTH_SHORT).show();
+
     }
 }

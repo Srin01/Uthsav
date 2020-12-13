@@ -134,8 +134,10 @@ public class HomeActivity extends AppCompatActivity {
         ImageView imageView = headerView.findViewById(R.id.circleImageViewProfile);
         StorageReference profileRef = storageReference.child("users/"+userId+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(imageView));
-        if(user!= null)
+        if(user!= null) {
             userName.setText(user.getUserName());
+            Toast.makeText(this, "Please check your network connection and Re-open the app", Toast.LENGTH_SHORT).show();
+        }
         else
             userName.setText("User Name");
     }
