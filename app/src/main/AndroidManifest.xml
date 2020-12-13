@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.uthsav">
-
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -14,7 +12,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,24 +19,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".Activities.Activities.HelpActivity"></activity>
         <!-- [START fcm_default_icon] -->
-        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
-             See README(https://goo.gl/l4GJaQ) for more. -->
+        <!--
+ Set custom default icon. This is used when no icon is set for incoming notification messages.
+             See README(https://goo.gl/l4GJaQ) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_launcher_foreground" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorAccent" />
-        <!-- [END fcm_default_icon] -->
+            android:resource="@color/colorAccent" /> <!-- [END fcm_default_icon] -->
         <!-- [START fcm_default_channel] -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="@string/default_notification_channel_id" />
-        <!-- [END fcm_default_channel] -->
+            android:value="@string/default_notification_channel_id" /> <!-- [END fcm_default_channel] -->
         <activity android:name=".Activities.Activities.SearchEventActivity" />
 
         <meta-data
@@ -58,13 +57,13 @@
         <activity android:name=".Activities.Activities.MessageActivity" />
         <activity android:name=".Activities.Activities.RegistrationActivity" />
         <activity android:name=".Activities.Activities.EventDescriptionActivity" />
+
         <meta-data
             android:name="com.phonepe.android.sdk.Debuggable"
-            android:value="true"/>
-        <!-- Keep it false in production environment-->
+            android:value="true" /> <!-- Keep it false in production environment -->
         <meta-data
             android:name="com.phonepe.android.sdk.isUAT"
-            android:value="true"/>
+            android:value="true" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
@@ -73,7 +72,6 @@
         <activity android:name=".Activities.Activities.LoginActivity" />
         <activity android:name=".Activities.Activities.EditUserProfileActivity" />
         <activity android:name=".Activities.Activities.SplashActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -88,7 +86,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>

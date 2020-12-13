@@ -50,4 +50,9 @@ public class SelectedStudentsListActivity extends AppCompatActivity {
     {
         startActivity(new Intent(this, HomeActivity.class));
     }
+
+    public void onClickHomeScreen(View view)
+    {
+        startActivity(new Intent(this, HomeActivity.class));
+    }
 }

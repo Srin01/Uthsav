@@ -15,18 +15,13 @@ import android.widget.Toast;
 import com.example.uthsav.Activities.Expert.UserExpert;
 import com.example.uthsav.Activities.Modal.User;
 import com.example.uthsav.R;
-import com.google.android.gms.tasks.OnCanceledListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
 import java.util.Objects;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditUserProfileActivity extends AppCompatActivity
@@ -147,6 +142,11 @@ public class EditUserProfileActivity extends AppCompatActivity
     }
 
     public void onClickToolBar(View view)
+    {
+        startActivity(new Intent(this, HomeActivity.class));
+    }
+
+    public void onClickHomeScreen(View view)
     {
         startActivity(new Intent(this, HomeActivity.class));
     }

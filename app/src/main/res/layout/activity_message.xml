@@ -16,7 +16,7 @@
         android:id="@+id/toolbar_profile"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/navyBlue"
         >
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image_Toolbar"

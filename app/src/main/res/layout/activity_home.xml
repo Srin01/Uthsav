@@ -25,6 +25,7 @@
         android:id="@+id/carouselView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+
         app:radius="6dp"
         app:slideInterval="3000"
         app:strokeWidth="1dp"
@@ -35,17 +36,22 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:background="@color/Peach"
+
         android:text="Important notifications"
         android:textAllCaps="false"
-        android:layout_margin="10dp"
-        android:drawableLeft="@drawable/ic_baseline_notifications_active_24"
-        android:padding="15dp"
-        android:drawablePadding="6dp"
-        android:background="@color/Peach"
         android:fontFamily="@font/brawler"
         android:textSize="20sp"
         android:textColor="#ffffff"
+
+        android:padding="15dp"
+        android:layout_margin="10dp"
         android:layout_marginTop="15dp"
+
+        android:drawableLeft="@drawable/ic_baseline_notifications_active_24"
+        android:drawablePadding="6dp"
+
         android:onClick="onClickShowNotifications"
         />
 

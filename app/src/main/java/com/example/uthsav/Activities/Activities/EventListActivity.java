@@ -16,18 +16,18 @@ import com.google.android.material.tabs.TabLayout;
 
 public class EventListActivity extends AppCompatActivity
 {
-    Toolbar toolbar;
+    Toolbar toolbar2;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
 
-        toolbar = findViewById(R.id.toolbar1);
-        setSupportActionBar(toolbar);
+        toolbar2 = findViewById(R.id.toolbar2);
+        setSupportActionBar(toolbar2);
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("UnRegistered Events"));
+        tabLayout.addTab(tabLayout.newTab().setText("Unregistered Events"));
         tabLayout.addTab(tabLayout.newTab().setText("Registered Events"));
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);

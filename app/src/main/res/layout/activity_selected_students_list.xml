@@ -10,10 +10,17 @@
         android:id="@+id/toolbar1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/lightBlue"
+        android:background="@color/navyBlue"
         android:elevation="5dp"
         tools:ignore="MissingConstraints"
-        android:onClick="onClickToolBar"/>
+        android:onClick="onClickToolBar">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:src="@drawable/utsav_white_text"
+            android:onClick="onClickHomeScreen"
+             />
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/selectedStudentsList_eventName"

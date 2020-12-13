@@ -207,7 +207,13 @@ public class EventDescriptionActivity extends AppCompatActivity
         return false;
     }
 
-    public void onClickToolBar(View view) {
+    public void onClickToolBar(View view)
+    {
+        startActivity(new Intent(this,HomeActivity.class));
+    }
+
+    public void onClickHomeScreen(View view)
+    {
         startActivity(new Intent(this,HomeActivity.class));
     }
 }
