@@ -139,9 +139,9 @@ public class LoginActivity extends AppCompatActivity{
 
             String personName = fUser.getDisplayName();
             String personEmail = fUser.getEmail();
-            userExpert.addUserToDB(fUser.getUid(), new User(fUser.getUid(),personEmail,personName,"gjsgjaghd","789787971" ,"ECVU","19GACSE060",new ArrayList<>()));
+            userExpert.addUserToDB(fUser.getUid(), new User(fUser.getUid(),personEmail,personName,"gjsgjaghd","789787971" ,"ECVU","19GACSE060",null));
 
-            reference.setValue(hashMap).addOnCompleteListener(task -> {
+            reference.setValue(hashMap).addOnCompleteListener((OnCompleteListener<Void>) task -> {
                 if (task.isSuccessful()){
                     Log.d(TAG, "updateUI: user id created to db " + fUser.getUid());
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -150,7 +150,8 @@ public class LoginActivity extends AppCompatActivity{
                     finish();
                 }
             });
-        }  //            Toast.makeText(LoginActivity.this, "You can't register woth this email or password", Toast.LENGTH_SHORT).show();
-
+        } else {
+            Toast.makeText(LoginActivity.this, "You can't register with this email or password", Toast.LENGTH_SHORT).show();
+        }
     }
 }

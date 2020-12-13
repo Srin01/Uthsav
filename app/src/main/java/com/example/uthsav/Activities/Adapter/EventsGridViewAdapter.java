@@ -31,7 +31,8 @@ public class EventsGridViewAdapter extends BaseAdapter {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference() ;
 
-    public EventsGridViewAdapter(Context c) {
+    public EventsGridViewAdapter(Context c)
+    {
         this.c = c;
         eventExpert = EventExpert.getInstance();
     }
