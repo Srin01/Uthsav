@@ -35,6 +35,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -73,6 +76,8 @@ public class MessageActivity extends AppCompatActivity {
     ValueEventListener seenListener;
     DatabaseReference firebaseDatabase;
     DatabaseReference reference;
+    StorageReference storageReference;
+    StorageReference profileRef;
 
     boolean notify = false;
 
@@ -82,6 +87,8 @@ public class MessageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_message);
         intent = getIntent();
         organiserId = intent.getStringExtra(ORGANISER_ID);
+        storageReference = FirebaseStorage.getInstance().getReference();
+        profileRef = storageReference.child("users/"+organiserId+"/profile.jpg");
 
         Toolbar toolbar = findViewById(R.id.toolbar_profile);
         setSupportActionBar(toolbar);
@@ -101,9 +108,9 @@ public class MessageActivity extends AppCompatActivity {
 
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
 
-        circleImageViewProfile.setImageResource(R.drawable.ic_launcher_background);
-        profileName.setText(Organiser.getUserName());
 
+        profileName.setText(Organiser.getUserName());
+        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(circleImageViewProfile));
         reference = FirebaseDatabase.getInstance().getReference("Users").child(organiserId);
         editText_Message = findViewById(R.id.text_send);
         recyclerView = findViewById(R.id.recyclerView_Messages);

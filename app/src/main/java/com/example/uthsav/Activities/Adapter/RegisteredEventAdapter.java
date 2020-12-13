@@ -1,6 +1,7 @@
 package com.example.uthsav.Activities.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.uthsav.Activities.Drivers.UserDriver.TAG;
+
 public  class RegisteredEventAdapter  extends RecyclerView.Adapter<RegisteredEventAdapter.MyViewHolder>
 {
     Context context;
@@ -41,6 +44,7 @@ public  class RegisteredEventAdapter  extends RecyclerView.Adapter<RegisteredEve
         userExpert = UserExpert.getInstance();
         user = userExpert.getUserOfIdFromCache(UserId);
         registeredEvents = user.getUserParticipatedEvents();
+        Log.d(TAG, "RegisteredEventAdapter: got events " + registeredEvents);
         eventExpert = EventExpert.getInstance();
     }
 

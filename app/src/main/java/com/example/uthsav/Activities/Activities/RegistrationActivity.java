@@ -25,6 +25,5 @@ public class RegistrationActivity extends AppCompatActivity {
     public void onClickToolBar(View view)
     {
         startActivity(new Intent(this, HomeActivity.class));
-
     }
 }

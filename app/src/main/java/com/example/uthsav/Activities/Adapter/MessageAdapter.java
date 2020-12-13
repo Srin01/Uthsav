@@ -16,6 +16,9 @@ import com.example.uthsav.Activities.Modal.Chat;
 import com.example.uthsav.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -26,7 +29,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyCourse
     public static final int MSG_TYPE_LEFT = 0;
     public static final int MSG_TYPE_RIGHT = 1;
     private UserExpert userExpert;
-    private TextView courseName;
+    StorageReference storageReference;
+    StorageReference profileRef;
     private ImageView imageView;
 
     FirebaseUser firebaseUser;
@@ -41,6 +45,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyCourse
     @Override
     public MyCourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
+        storageReference = FirebaseStorage.getInstance().getReference();
+
         if (viewType == MSG_TYPE_RIGHT) {
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             View view = layoutInflater.inflate(R.layout.chat_item_right, parent, false);
@@ -59,6 +65,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyCourse
     public void onBindViewHolder(@NonNull MyCourseViewHolder holder, int position) {
         Chat chat = chats.get(position);
         holder.show_message.setText(chat.getMessage());
+        profileRef = storageReference.child("users/"+chat.getSender()+"/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(holder.profile_image));
         if(position == chats.size()-1)
         {
             if(chat.IsisSeen()) {
@@ -92,6 +100,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyCourse
             view = itemView;
             seen_text = view.findViewById(R.id.text_seen);
             show_message = view.findViewById(R.id.show_message);
+            profile_image = view.findViewById(R.id.profile_image);
         }
 
     }

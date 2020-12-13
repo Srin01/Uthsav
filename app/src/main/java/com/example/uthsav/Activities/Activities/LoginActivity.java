@@ -27,6 +27,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity{
@@ -137,9 +138,9 @@ public class LoginActivity extends AppCompatActivity{
 
             String personName = fUser.getDisplayName();
             String personEmail = fUser.getEmail();
-            userExpert.addUserToDB(fUser.getUid(), new User(fUser.getUid(),personEmail,personName,"gjsgjaghd","789787971" ,"ECVU","19GACSE060",null));
+            userExpert.addUserToDB(fUser.getUid(), new User(fUser.getUid(),personEmail,personName,"gjsgjaghd","789787971" ,"ECVU","19GACSE060",new ArrayList<>()));
 
-            reference.setValue(hashMap).addOnCompleteListener((OnCompleteListener<Void>) task -> {
+            reference.setValue(hashMap).addOnCompleteListener(task -> {
                 if (task.isSuccessful()){
                     Log.d(TAG, "updateUI: user id created to db " + fUser.getUid());
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);

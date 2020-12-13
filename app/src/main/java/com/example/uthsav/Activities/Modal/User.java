@@ -11,7 +11,7 @@ public class User
     private String userPhoneNumber;
     private String userCollageName;
     private String userRegisterNumber;
-    private ArrayList<String> userParticipatedEvents;
+    private ArrayList<String> userParticipatedEvents = new ArrayList<>();
 
     public User() {
     }
@@ -58,6 +58,8 @@ public class User
     }
 
     public ArrayList<String> getUserParticipatedEvents() {
+        if(userParticipatedEvents == null)
+            userParticipatedEvents = new ArrayList<>();
         return userParticipatedEvents;
     }
 

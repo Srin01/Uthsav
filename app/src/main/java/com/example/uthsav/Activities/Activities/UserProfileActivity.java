@@ -20,7 +20,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.uthsav.Activities.Adapter.UserProfileActivityAdapter;
+import com.example.uthsav.Activities.Expert.EventExpert;
 import com.example.uthsav.Activities.Expert.UserExpert;
+import com.example.uthsav.Activities.Modal.Event;
 import com.example.uthsav.Activities.Modal.User;
 import com.example.uthsav.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -37,10 +39,13 @@ import java.util.ArrayList;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
+import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.example.uthsav.Activities.Activities.HomeActivity.EVENT_POS;
 import static com.example.uthsav.Activities.Activities.HomeActivity.USER_ID;
+import static com.example.uthsav.Activities.Activities.SelectionListActivity.EVENT_ID;
 
-public class UserProfileActivity extends AppCompatActivity
+public class UserProfileActivity extends AppCompatActivity implements UserProfileActivityAdapter.OnEventClickListener
 {
     ImageView profilePhoto;
     TextView Name;
@@ -51,6 +56,7 @@ public class UserProfileActivity extends AppCompatActivity
     TextView contactNumber;
     TextView registerNumberLabel;
     TextView registerNumber;
+    CircleImageView profileCircular;
     RecyclerView userProfileActivityRecyclerView;
     FloatingActionButton floatingActionButton;
     String userId;
@@ -65,6 +71,8 @@ public class UserProfileActivity extends AppCompatActivity
     Uri uri;
     StorageReference storageReference;
     UserProfileActivityAdapter userProfileActivityAdapter;
+    StorageReference profileRef;
+    EventExpert eventExpert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -73,9 +81,9 @@ public class UserProfileActivity extends AppCompatActivity
         setContentView(R.layout.userprofileactivity);
 
         bindViews();
-        //setUpViews();
+        setUpViews();
         userProfileActivityRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        userProfileActivityAdapter = new UserProfileActivityAdapter(this,userId);
+        userProfileActivityAdapter = new UserProfileActivityAdapter(this,userId,this);
         userProfileActivityRecyclerView.setAdapter(userProfileActivityAdapter);
 
         try {
@@ -94,9 +102,11 @@ public class UserProfileActivity extends AppCompatActivity
         EmailId.setText(user.getUserMail());
         CollegeName.setText(user.getUserCollageName());
         contactNumber.setText(user.getUserPhoneNumber());
-        StorageReference profileRef = storageReference.child("users/"+userId+"/profile.jpg");
-        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profilePhoto));
-
+        eventExpert = EventExpert.getInstance();
+        registerNumber.setText(user.getUserRegisterNumber());
+        profileRef.getDownloadUrl().addOnSuccessListener(uri ->
+        {Picasso.get().load(uri).into(profilePhoto);
+        Picasso .get().load(uri).into(profileCircular);});
     }
 
     private void getDataForQRCodeScanner() throws JSONException {
@@ -119,13 +129,14 @@ public class UserProfileActivity extends AppCompatActivity
         registerNumberLabel = findViewById(R.id.RegisterNumberLabel_textview);
         registerNumber = findViewById(R.id.RegisterNumber);
         userProfileActivityRecyclerView = findViewById(R.id.recyclerView);
+        profileCircular = findViewById(R.id.profile_image_small);
         floatingActionButton = findViewById(R.id.edit_button);
         qrCode = findViewById(R.id.qrCode);
         userExpert = UserExpert.getInstance();
         userId =getIntent().getStringExtra(USER_ID);
         storageReference = FirebaseStorage.getInstance().getReference();
         user = userExpert.getUserOfIdFromCache(userId);
-
+        profileRef = storageReference.child("users/"+userId+"/profile.jpg");
     }
 
     private void qrCodeGenerator()
@@ -178,5 +189,12 @@ public class UserProfileActivity extends AppCompatActivity
         Intent intent= new Intent(this,EditUserProfileActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onEventClick(int position) {
+        Intent intent = new Intent(this,EventDescriptionActivity.class);
+        intent.putExtra(EVENT_POS,position);
+        startActivity(intent);
     }
 }

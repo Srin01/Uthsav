@@ -33,11 +33,15 @@ import com.example.uthsav.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
+
+import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -55,6 +59,7 @@ public class HomeActivity extends AppCompatActivity {
     EventExpert eventExpert;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference() ;
+    FirebaseFirestore firebaseFirestore;
 
     int[] sampleImages = {R.drawable.corousel_1, R.drawable.corousel_2, R.drawable.corousel, R.drawable.corousel_4, R.drawable.corousel_5, R.drawable.corousel_6, R.drawable.corousel_7};
 
@@ -90,6 +95,7 @@ public class HomeActivity extends AppCompatActivity {
         eventsGridView = findViewById(R.id.events_gridView);
         carouselView = findViewById(R.id.carouselView);
         toolbar = findViewById(R.id.toolbar);
+        firebaseFirestore = FirebaseFirestore.getInstance();
         carouselView.setPageCount(sampleImages.length);
         carouselView.setImageListener(imageListener);
         userExpert = UserExpert.getInstance();
@@ -105,8 +111,6 @@ public class HomeActivity extends AppCompatActivity {
 
     public void onClickHomeScreen(View view)
     {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
     }
 
     public void onClickShowNotifications(View view)
@@ -130,7 +134,10 @@ public class HomeActivity extends AppCompatActivity {
         ImageView imageView = headerView.findViewById(R.id.circleImageViewProfile);
         StorageReference profileRef = storageReference.child("users/"+userId+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(imageView));
-        userName.setText(user.getUserName());
+        if(user!= null)
+            userName.setText(user.getUserName());
+        else
+            userName.setText("User Name");
     }
 
     @Override

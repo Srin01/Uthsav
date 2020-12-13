@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class EventExpert
 {
-    ArrayList<Event> events ;
+    ArrayList<Event> events;
     EventDriver eventDriver;
     private static EventExpert single_instance = null;
 

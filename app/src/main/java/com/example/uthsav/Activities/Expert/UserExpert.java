@@ -62,28 +62,31 @@ public class UserExpert
         userDriver.addUserToDB(uid,user);
     }
 
-//    public boolean isEventAlreadyRegistered(String uid, String eventId)
-//    {
-//        User user =  getUserOfIdFromCache(uid);
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        ArrayList<String> events = user.getUserParticipatedEvents();
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        for (int i = 0; i <events.size() ; i++) {
-//            if(events.get(i).equals(eventId))
-//            {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    public boolean isEventAlreadyRegistered(String uid, String eventId)
+    {
+        User user =  getUserOfIdFromCache(uid);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ArrayList<String> events = user.getUserParticipatedEvents();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if(events != null)
+        {
+            for (int i = 0; i <events.size() ; i++) {
+                if(events.get(i).equals(eventId))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     private void addEventToUserList(String uid,String eventId)
     {
@@ -104,13 +107,14 @@ public class UserExpert
 
     public int addEventToUserData(String uid, String eventId)
     {
-//        if(isEventAlreadyRegistered(uid,eventId))
-//        {
-//            return 0;
-//        }
-//        else
+        if(isEventAlreadyRegistered(uid,eventId))
         {
-//            addEventToUserList(uid,eventId);
+            return 0;
+        }
+        else
+        {
+            addEventToUserList(uid,eventId);
+            getUserOfIdFromCache(uid).addEventToUserList(uid);
             userDriver.addEventsRegistered(uid,eventId);
             try {
                 Thread.sleep(1000);

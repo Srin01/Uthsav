@@ -1,6 +1,7 @@
 package com.example.uthsav.Activities.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import static com.example.uthsav.Activities.Drivers.UserDriver.TAG;
+
 public class UserProfileActivityAdapter extends RecyclerView.Adapter<UserProfileActivityAdapter.MyViewHolder>
 {
     private Context context;
@@ -34,12 +37,13 @@ public class UserProfileActivityAdapter extends RecyclerView.Adapter<UserProfile
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference() ;
 
-    public UserProfileActivityAdapter(Context c, String userId) {
+    public UserProfileActivityAdapter(Context c, String userId, OnEventClickListener onEventClickListener) {
         context = c;
         userExpert = UserExpert.getInstance();
         userDriver = new UserDriver();
         eventExpert = EventExpert.getInstance();
         this.userId = userId;
+        this.onEventListener = onEventClickListener;
         eventIDs = userExpert.getUserOfIdFromCache(userId).getUserParticipatedEvents();
     }
 
@@ -56,7 +60,7 @@ public class UserProfileActivityAdapter extends RecyclerView.Adapter<UserProfile
         View v = holder.view;
         ImageView eventImage = v.findViewById(R.id.selectionList_eventImage);
         TextView eventName = v.findViewById(R.id.selectionList_eventName);
-
+        Log.d(TAG, "onBindViewHolder: event id = " + eventIDs.get(position));
         Event event = eventExpert.getEventOfIdFromCache(eventIDs.get(position));
         StorageReference profileRef = storageReference.child("events/"+ event.getEventId()+"/"+event.getEventId()+".jpeg");
         profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(eventImage));
@@ -65,6 +69,8 @@ public class UserProfileActivityAdapter extends RecyclerView.Adapter<UserProfile
 
     @Override
     public int getItemCount() {
+        if(eventIDs != null)
+        return eventIDs.size();
         return 0;
     }
 

@@ -32,6 +32,7 @@ import java.util.ArrayList;
 
 import static com.example.uthsav.Activities.Activities.HomeActivity.EVENT_POS;
 import static com.example.uthsav.Activities.Activities.MessageActivity.ORGANISER_ID;
+import static com.example.uthsav.Activities.Activities.SelectionListActivity.EVENT_ID;
 
 public class EventDescriptionActivity extends AppCompatActivity
 {
@@ -179,6 +180,7 @@ public class EventDescriptionActivity extends AppCompatActivity
                 Toast.makeText(EventDescriptionActivity.this, "Payment Successful.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this,SuccessfulRegistrationActivity.class);
                 user.addEventToUserList(event.getEventId());
+                intent.putExtra(EVENT_ID, event.getEventId());
                 startActivity(intent);
                 finish();
                 Log.e("UPI", "Cancelled by user: "+approvalRefNo);
