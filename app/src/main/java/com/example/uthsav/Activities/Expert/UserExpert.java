@@ -46,6 +46,14 @@ public class UserExpert
         return false;
     }
 
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(ArrayList<User> users) {
+        this.users = users;
+    }
+
     public void printUsers()
     {
         for (int i = 0; i <users.size() ; i++) {
