@@ -39,7 +39,6 @@ public class EditUserProfileActivity extends AppCompatActivity
     TextInputLayout emailId_textInputLayout;
     TextInputLayout registerNumber_textInputLayout;
 
-
     TextInputEditText name_editText;
     TextInputEditText phoneNumber_editText;
     TextInputEditText collegeName_editText;
@@ -117,8 +116,28 @@ public class EditUserProfileActivity extends AppCompatActivity
     }
 
     public void onClickSave(View view) {
+
         getValues();
-        updateValues();
+
+        if(isNotNull(userName, name_textInputLayout) && isNotNull(phoneNumber, phoneNumber_textInputLayout) && isNotNull(collageName, collegeName_textInputLayout)
+                && isNotNull(userEmail, emailId_textInputLayout) && isNotNull(userRegisterNumber, registerNumber_textInputLayout))
+        {
+
+            Toast.makeText(this, "Editted Successfully", Toast.LENGTH_SHORT).show();
+            updateValues();
+        }
+    }
+
+    private boolean isNotNull(String s, TextInputLayout layout)
+    {
+        if(s.equals(""))
+        {
+            layout.setError("Enter a valid Input");
+            layout.setErrorEnabled(true);
+            return false;
+        }
+        else
+            return true;
     }
 
     private void uploadImageToFirebase(Uri imageUri) {
@@ -150,4 +169,5 @@ public class EditUserProfileActivity extends AppCompatActivity
     {
         startActivity(new Intent(this, HomeActivity.class));
     }
+
 }

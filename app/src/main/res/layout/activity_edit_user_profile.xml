@@ -7,22 +7,26 @@
     android:layout_height="match_parent"
     tools:context=".Activities.Activities.EditUserProfileActivity">
 
- <androidx.appcompat.widget.Toolbar
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/navyBlue"
         android:elevation="5dp"
-     tools:ignore="MissingConstraints">
+        android:onClick="onClickToolBar"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="25dp"
+
             android:src="@drawable/utsav_white_text"
             android:onClick="onClickHomeScreen"
             />
-
     </androidx.appcompat.widget.Toolbar>
+
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -48,7 +52,6 @@
 
         android:src="@drawable/dog"
 
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar1"/>
@@ -83,7 +86,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:textColorHint="#000000"
 
         android:layout_marginTop="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -91,6 +93,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uploadphoto_textview"
+
         app:layout_constraintVertical_bias="0.092">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -98,16 +101,14 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:hint="Enter your name"
-            android:inputType="textPersonName" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:inputType="text" />
 
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/PhoneNumber_textInputLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:textColorHint="#000000"
 
         android:layout_marginTop="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -115,31 +116,32 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Name_textInputLayout"
-        app:layout_constraintVertical_bias="0.041">
+        app:layout_constraintVertical_bias="0.041"
+        tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/PhoneNumber_editText"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:hint="Enter your Phone Number"
-            android:inputType="number"/>
+            android:inputType="number"
+            android:maxLength="10"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
-        <com.google.android.material.textfield.TextInputLayout
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/EmailId_textInputLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:textColorHint="#000000"
-        android:layout_marginTop="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PhoneNumber_textInputLayout"
-        app:layout_constraintVertical_bias="0.054">
+        app:layout_constraintVertical_bias="0.054"
+        tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailId_editText"
@@ -154,21 +156,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:textColorHint="#000000"
-
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailId_textInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/EmailId_textInputLayout"
+        tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/College_name"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+
+            android:layout_marginTop="28dp"
             android:hint="Enter College Name"
             android:inputType="text"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
@@ -181,23 +183,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:textColorHint="#000000"
-
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CollegeName_textInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/CollegeName_textInputLayout"
+        tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/registerNumber"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
 
-
+            android:layout_marginTop="28dp"
             android:hint="Enter Register number"
             android:inputType="text"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
@@ -205,31 +205,27 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/save_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-            android:text="Save"
-            android:textAllCaps="false"
-            android:textColor="#ffffff"
-            android:textSize="18sp"
-
-            android:drawableLeft="@drawable/save_icon"
-            android:drawablePadding="7dp"
-            android:background="@color/Peach"
-
-            android:fontFamily="@font/brawler"
-            android:onClick="onClickSave"
-            android:padding="10sp"
-
-            android:layout_marginTop="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.472"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.901" />
+        android:text="Save"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:padding="10sp"
+        android:fontFamily="@font/brawler"
+        android:background="#2196F3"
+        android:drawableLeft="@drawable/save_icon"
+        android:drawablePadding="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.945"
+        android:onClick="onClickSave"/>
 
     </LinearLayout>
 
