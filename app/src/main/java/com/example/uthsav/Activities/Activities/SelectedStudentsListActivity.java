@@ -22,7 +22,7 @@ public class SelectedStudentsListActivity extends AppCompatActivity {
     String eventId;
     private RecyclerView selectedStudentListRecyclerView;
     SelectedStudentListAdapter selectedStudentListAdapter;
-    Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +42,7 @@ public class SelectedStudentsListActivity extends AppCompatActivity {
         eventName = findViewById(R.id.selectedStudentsList_eventName);
         selectedStudentListRecyclerView = findViewById(R.id.selectedStudentsList_recyclerView);
 
-        toolbar = findViewById(R.id.toolbar1);
-        setSupportActionBar(toolbar);
+
     }
 
     public void onClickToolBar(View view)

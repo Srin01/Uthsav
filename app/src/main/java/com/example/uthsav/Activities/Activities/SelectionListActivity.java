@@ -15,14 +15,15 @@ import com.example.uthsav.Activities.Adapter.SelectionListAdapter;
 import com.example.uthsav.Activities.Expert.SelectedEventsExpert;
 import com.example.uthsav.R;
 
-public class SelectionListActivity extends AppCompatActivity implements SelectionListAdapter.OnEventClickListener {
+public class SelectionListActivity extends AppCompatActivity implements SelectionListAdapter.OnEventClickListener
+{
 
     public static final String EVENT_ID = "eventId";
     TextView selectionList;
     RecyclerView selectionListRecyclerView;
     SelectionListAdapter selectionListAdapter;
     SelectedEventsExpert selectedEventsExpert;
-    Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,8 +44,7 @@ public class SelectionListActivity extends AppCompatActivity implements Selectio
         selectionList = findViewById(R.id.selectionList_textView);
         selectionListRecyclerView = findViewById(R.id.selectionList_recyclerView);
 
-        toolbar = findViewById(R.id.toolbar1);
-        setSupportActionBar(toolbar);
+
     }
 
     @Override
