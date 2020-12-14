@@ -23,8 +23,8 @@ public class EventListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
 
-        toolbar2 = findViewById(R.id.toolbar2);
-        setSupportActionBar(toolbar2);
+//        toolbar2 = findViewById(R.id.toolbar3);
+//        setSupportActionBar(toolbar2);
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Unregistered Events"));
