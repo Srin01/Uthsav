@@ -4,25 +4,30 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardElevation="8dp"
     app:cardCornerRadius="8dp">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/selectionList_eventImage"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_margin="20dp"
-            android:src="@drawable/ic_launcher_background"
+            android:layout_marginBottom="12dp"
 
+
+            android:padding="10dp"
+            android:src="@drawable/ic_launcher_background"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.101"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/selectionList_eventName"
@@ -34,10 +39,10 @@
 
             app:layout_constraintBottom_toBottomOf="@+id/selectionList_eventImage"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.146"
             app:layout_constraintStart_toEndOf="@+id/selectionList_eventImage"
             app:layout_constraintTop_toTopOf="@+id/selectionList_eventImage"
-            app:layout_constraintHorizontal_bias="0.2"
-            />
+            app:layout_constraintVertical_bias="0.708" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
