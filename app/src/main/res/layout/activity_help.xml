@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.Activities.HelpActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/navyBlue"
+        android:elevation="5dp"
+        tools:ignore="MissingConstraints" >
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:src="@drawable/utsav_white_text"
+        android:onClick="onClickHomeScreen"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/helpText_View"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:fontFamily="@font/brawler"
+        android:text="HELP"
+        android:textColor="#000000"
+        android:textSize="30sp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.118" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_margin="5dp"
+
+        android:background="@drawable/border"
+
+        android:orientation="vertical"
+        android:padding="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.266">
+
+
+        <TextView
+            android:id="@+id/contact_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:padding="8dp"
+            android:text="Contact Us :"
+            android:textColor="#000000"
+            android:textSize="25sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"/>
+
+        <TextView
+            android:id="@+id/mohith_phoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="Mohith Varma VS : +91 97419 36008"
+            android:textSize="19sp"
+            android:textColor="#000000"
+            
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.346"
+            tools:ignore="MissingConstraints"/>
+
+        <TextView
+            android:id="@+id/srinidhiPhone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:padding="8dp"
+            android:text="Srinidhi S Prasad : +91 78920 62750"
+            android:textColor="#000000"
+
+            android:textSize="19sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.591"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="3dp" />
+
+        <TextView
+            android:id="@+id/kavya_phoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:padding="8dp"
+            android:text="Kavya Bhat : +91 96113 71838"
+            android:textColor="#000000"
+
+
+            android:textSize="19sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/srinidhiPhone_number"
+            app:layout_constraintVertical_bias="0.2"
+            tools:layout_editor_absoluteX="6dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/second_constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_margin="5dp"
+
+        android:background="@drawable/border"
+        android:orientation="vertical"
+
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.817">
+
+
+        <TextView
+            android:id="@+id/mail_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Mail ID:"
+            android:textColor="#000000"
+            android:textSize="25sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.033"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.074"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/mohith_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Mohith Varma VS : Mohithvarmais@gmail.com"
+            android:textColor="#000000"
+            android:textSize="17sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.341"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/srinidhi_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Srinidhi S Prasad : SrinidhiPrasad@gmail.com"
+            android:textColor="#000000"
+            android:textSize="17sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.585"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/kavya_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Kavya Bhat : kavyakbhat12@gmail.com"
+            android:textColor="#000000"
+            android:textSize="17sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.814"
+            tools:ignore="MissingConstraints"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

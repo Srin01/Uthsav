@@ -6,34 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.Activities.RegistrationActivity">
-
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar1"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/navyBlue"
         android:elevation="5dp"
-        tools:ignore="MissingConstraints"
-        android:onClick="onClickToolBar">
+        tools:ignore="MissingConstraints" >
 
         <ImageView
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="25dp"
             android:src="@drawable/utsav_white_text"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            />
-
+            tools:ignore="MissingConstraints" />
     </androidx.appcompat.widget.Toolbar>
-
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#2196F3"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        tools:ignore="MissingConstraints" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Name_textInputLayout"
@@ -172,9 +158,11 @@
         android:layout_height="wrap_content"
 
         android:text="Pay"
-        android:background="@color/Peach"
         android:textSize="20sp"
         android:textAllCaps="false"
+        android:background="@color/Peach"
+        android:textColor="#ffffff"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

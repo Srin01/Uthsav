@@ -43,7 +43,8 @@ import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity
+{
 
     public static final String EVENT_POS = "eventPosition";
     private static final int STORAGE_PERMISSION_CODE =1234 ;
@@ -217,7 +218,8 @@ public class HomeActivity extends AppCompatActivity {
                     startActivity(new Intent(HomeActivity.this, MapActivity.class));
                     break;
                 case R.id.item3:
-                    Toast.makeText(HomeActivity.this, "You clicked help", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(HomeActivity.this, HelpActivity.class));
+
                     break;
                 case R.id.logOutItem:
                     FirebaseAuth.getInstance().signOut();

@@ -15,7 +15,14 @@
         android:background="@color/navyBlue"
         android:elevation="5dp"
         tools:ignore="MissingConstraints"
-        android:onClick="onClickToolBar"/>
+        android:onClick="onClickToolBar">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:src="@drawable/utsav_white_text"
+            android:onClick="onClickHomeScreen"
+            />
+    </androidx.appcompat.widget.Toolbar>
 
     <com.github.jinatonic.confetti.ConfettiView
         android:id="@+id/confettiView"
@@ -32,6 +39,7 @@
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +54,7 @@
         android:textSize="25sp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/caudex"
+        android:textColor="#000000"
 
         app:layout_constraintEnd_toEndOf="@id/successful_registration_textView"
         app:layout_constraintStart_toStartOf="@id/successful_registration_textView"
@@ -61,7 +70,7 @@
         android:textSize="18sp"
         android:padding="15dp"
         android:fontFamily="@font/brawler"
-        android:background="#2196F3"
+        android:background="@color/Peach"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
