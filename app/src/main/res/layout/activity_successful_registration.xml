@@ -19,9 +19,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="25dp"
-            android:src="@drawable/utsav_white_text"
-            android:onClick="onClickHomeScreen"
-            />
+            android:src="@drawable/utsav_white_text"/>
     </androidx.appcompat.widget.Toolbar>
 
     <com.github.jinatonic.confetti.ConfettiView
