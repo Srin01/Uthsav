@@ -3,27 +3,36 @@
     <group
         android:checkableBehavior="single">
         <item
-            android:id="@+id/item1"
+            android:id="@+id/eventList"
             android:title="Event List"
             android:icon="@drawable/event_list"
            />
 
         <item
-            android:id="@+id/item2"
+            android:id="@+id/map"
             android:title="Map"
             android:icon="@drawable/map_icon"
            />
 
         <item
-            android:id="@+id/item3"
+            android:id="@+id/searchItem"
+            android:title="search"
+            android:icon="@drawable/search"
+            />
+
+        <item
+            android:id="@+id/help"
             android:title="Help"
             android:icon="@drawable/help_icon"
             />
+
 
         <item
             android:id="@+id/logOutItem"
             android:title="Log out"
             android:icon="@drawable/ic_launcher_foreground"
             />
+
+
     </group>
 </menu>

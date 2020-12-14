@@ -211,15 +211,18 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {
-                case R.id.item1:
+                case R.id.eventList:
                     startActivity(new Intent(HomeActivity.this, EventListActivity.class));
                     break;
-                case R.id.item2:
+                case R.id.map:
                     startActivity(new Intent(HomeActivity.this, MapActivity.class));
                     break;
-                case R.id.item3:
-                    startActivity(new Intent(HomeActivity.this, HelpActivity.class));
+                case R.id.searchItem:
+                    startActivity(new Intent(HomeActivity.this, SearchEventActivity.class));
+                    break;
 
+                case R.id.help:
+                    startActivity(new Intent(HomeActivity.this, HelpActivity.class));
                     break;
                 case R.id.logOutItem:
                     FirebaseAuth.getInstance().signOut();
