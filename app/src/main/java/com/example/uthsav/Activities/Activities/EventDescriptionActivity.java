@@ -156,18 +156,16 @@ public class EventDescriptionActivity extends AppCompatActivity
             if(str == null) str = "discard";
             String status = "";
             String approvalRefNo = "";
-            String response[] = str.split("&");
-            for (int i = 0; i < response.length; i++) {
-                String equalStr[] = response[i].split("=");
-                if(equalStr.length >= 2) {
+            String[] response = str.split("&");
+            for (String s : response) {
+                String[] equalStr = s.split("=");
+                if (equalStr.length >= 2) {
                     if (equalStr[0].toLowerCase().equals("Status".toLowerCase())) {
                         status = equalStr[1].toLowerCase();
-                    }
-                    else if (equalStr[0].toLowerCase().equals("ApprovalRefNo".toLowerCase()) || equalStr[0].toLowerCase().equals("txnRef".toLowerCase())) {
+                    } else if (equalStr[0].toLowerCase().equals("ApprovalRefNo".toLowerCase()) || equalStr[0].toLowerCase().equals("txnRef".toLowerCase())) {
                         approvalRefNo = equalStr[1];
                     }
-                }
-                else {
+                } else {
                     paymentCancel = "Payment cancelled by user.";
                 }
             }
