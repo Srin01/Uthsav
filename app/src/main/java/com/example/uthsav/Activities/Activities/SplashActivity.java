@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.example.uthsav.Activities.Activities.HomeActivity;
 import com.example.uthsav.Activities.Activities.LoginActivity;
 import com.example.uthsav.Activities.Expert.EventExpert;
+import com.example.uthsav.Activities.Expert.OrganiserExpert;
 import com.example.uthsav.Activities.Expert.SelectedEventsExpert;
 import com.example.uthsav.Activities.Expert.SelectedUserExpert;
 import com.example.uthsav.Activities.Expert.UserExpert;
@@ -28,6 +29,7 @@ public class SplashActivity extends AppCompatActivity {
     UserExpert userExpert;
     EventExpert eventExpert;
     SelectedEventsExpert selectedEventsExpert;
+    OrganiserExpert organiserExpert;
     Animation topAnim, bottomAnim;
     ImageView utsav, dareToDream;
 
@@ -63,6 +65,7 @@ public class SplashActivity extends AppCompatActivity {
             eventExpert = EventExpert.getInstance();
             selectedEventsExpert = SelectedEventsExpert.getInstance();
             userExpert = UserExpert.getInstance();
+            organiserExpert = OrganiserExpert.getInstance();
             startActivity(intent);
             finish();
         }, 3000);

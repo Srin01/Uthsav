@@ -16,8 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.uthsav.Activities.Adapter.MessageAdapter;
+import com.example.uthsav.Activities.Expert.OrganiserExpert;
 import com.example.uthsav.Activities.Expert.UserExpert;
 import com.example.uthsav.Activities.Modal.Chat;
+import com.example.uthsav.Activities.Modal.Organiser;
 import com.example.uthsav.Activities.Modal.User;
 import com.example.uthsav.Activities.Notifications.APIService;
 import com.example.uthsav.Activities.Notifications.Client;
@@ -70,7 +72,8 @@ public class MessageActivity extends AppCompatActivity {
     TextView profileName;
     UserExpert userExpert;
     List<Chat> chatList;
-    User Organiser;
+    OrganiserExpert organiserExpert;
+    Organiser Organiser;
 
     RecyclerView recyclerView;
     ValueEventListener seenListener;
@@ -99,7 +102,8 @@ public class MessageActivity extends AppCompatActivity {
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         userExpert = UserExpert.getInstance();
-        Organiser = userExpert.getUserOfIdFromCache(organiserId);
+        organiserExpert = OrganiserExpert.getInstance();
+        Organiser = organiserExpert.getOrganiser(organiserId);
         imageButtonSend = findViewById(R.id.send_button);
         circleImageViewProfile = findViewById(R.id.profile_image_Toolbar);
         profileName = findViewById(R.id.userName);
@@ -109,7 +113,7 @@ public class MessageActivity extends AppCompatActivity {
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
 
 
-        profileName.setText(Organiser.getUserName());
+        profileName.setText(Organiser.getOrganiserName());
         profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(circleImageViewProfile));
         reference = FirebaseDatabase.getInstance().getReference("Users").child(organiserId);
         editText_Message = findViewById(R.id.text_send);
@@ -229,13 +233,13 @@ public class MessageActivity extends AppCompatActivity {
 
 
         final String msg = message;
-//        sendNotification(receiver,firebaseUser.getDisplayName(), msg);
+        sendNotification(receiver,firebaseUser.getDisplayName(), msg);
         reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String userName = (String) dataSnapshot.child("username").getValue();
-//                Log.d("myTag", "onDataChange: "+ dataSnapshot.child("username"));
+                Log.d("myTag", "onDataChange: "+ dataSnapshot.child("username"));
                 if (notify) {
                     sendNotification(receiver,userName, msg);
                 }

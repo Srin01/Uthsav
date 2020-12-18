@@ -54,22 +54,7 @@ public class EventDriver
         return events;
     }
 
-//    public Event getEventOfId(String id)  {
-//        final Event[] event = {null};
-//        firebaseFirestore.collection("events").document(id).get().addOnSuccessListener(documentSnapshot ->
-//        {
-//            if(documentSnapshot.exists())
-//            {
-//              event[0] = documentSnapshot.toObject(Event.class);
-//            }
-//        });
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        return event[0];
-//    }
+
 
     public void setRoundDone(String evenId)
     {
@@ -81,16 +66,6 @@ public class EventDriver
     {
         firebaseFirestore.collection("events").document(eventId).update("selectedUsers", FieldValue.arrayUnion(uid));
         Log.d(TAG, "addUserToSelectedList: added user " + uid + " selected users to event " + eventId);
-    }
-
-    public int getTotalNumberOfEvents()
-    {
-        final int[] count = {0};
-        firebaseFirestore.collection("events").addSnapshotListener((value, error) -> {
-            assert value != null;
-            count[0] = value.size();
-        });
-        return count[0];
     }
 
     public ArrayList<Event> getEventOfRoundDone()
